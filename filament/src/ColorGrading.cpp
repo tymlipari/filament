@@ -494,33 +494,63 @@ inline float3 curves(float3 v, float3 shadowGamma, float3 midPoint, float3 highl
 // Luminance scaling
 //------------------------------------------------------------------------------
 
+float3 sRGB_to_perceptual(float3 x) {
+    return sRGB_to_OkLab(x);
+}
+
+float3 perceptual_to_sRGB(float3 x) {
+    return OkLab_to_sRGB(x);
+}
+
 static float3 luminanceScaling(float3 x,
         const ToneMapper& toneMapper, float3 luminanceWeights) noexcept {
 
-    // Troy Sobotka, 2021, "EVILS - Exposure Value Invariant Luminance Scaling"
-    // https://colab.research.google.com/drive/1iPJzNNKR7PynFmsqSnQm3bCZmQ3CvAJ-#scrollTo=psU43hb-BLzB
+//    // Troy Sobotka, 2021, "EVILS - Exposure Value Invariant Luminance Scaling"
+//    // https://colab.research.google.com/drive/1iPJzNNKR7PynFmsqSnQm3bCZmQ3CvAJ-#scrollTo=psU43hb-BLzB
+//
+//    float luminanceIn = dot(x, luminanceWeights);
+//
+//    // TODO: We could optimize for the case of single-channel luminance
+//    float luminanceOut = toneMapper(luminanceIn).y;
+//
+//    float peak = max(x);
+//    float3 chromaRatio = max(x / peak, 0.0f);
+//
+//    float chromaRatioLuminance = dot(chromaRatio, luminanceWeights);
+//
+//    float3 maxReserves = 1.0f - chromaRatio;
+//    float maxReservesLuminance = dot(maxReserves, luminanceWeights);
+//
+//    float luminanceDifference = std::max(luminanceOut - chromaRatioLuminance, 0.0f);
+//    float scaledLuminanceDifference =
+//            luminanceDifference / std::max(maxReservesLuminance, std::numeric_limits<float>::min());
+//
+//    float chromaScale = (luminanceOut - luminanceDifference) /
+//            std::max(chromaRatioLuminance, std::numeric_limits<float>::min());
+//
+//    return chromaScale * chromaRatio + scaledLuminanceDifference * maxReserves;
 
     float luminanceIn = dot(x, luminanceWeights);
 
-    // TODO: We could optimize for the case of single-channel luminance
-    float luminanceOut = toneMapper(luminanceIn).y;
-
     float peak = max(x);
-    float3 chromaRatio = max(x / peak, 0.0f);
 
+    float3 chromaRatio = max(x / peak, 0.0f);
     float chromaRatioLuminance = dot(chromaRatio, luminanceWeights);
 
-    float3 maxReserves = 1.0f - chromaRatio;
-    float maxReservesLuminance = dot(maxReserves, luminanceWeights);
+    float compressedLuminance = toneMapper(luminanceIn).y;
+    float3 compressed = (chromaRatio / chromaRatioLuminance) * compressedLuminance;
 
-    float luminanceDifference = std::max(luminanceOut - chromaRatioLuminance, 0.0f);
-    float scaledLuminanceDifference =
-            luminanceDifference / std::max(maxReservesLuminance, std::numeric_limits<float>::min());
+    float3 perceptual = sRGB_to_perceptual(compressed);
+    float3 perceptualAchromatic = sRGB_to_perceptual(compressedLuminance);
 
-    float chromaScale = (luminanceOut - luminanceDifference) /
-            std::max(chromaRatioLuminance, std::numeric_limits<float>::min());
+    float chromaScale = saturate((compressedLuminance - 0.75f) / 0.25f);
+    chromaScale = mix(compressedLuminance, chromaScale, saturate(chromaRatioLuminance * 1.1f));
+    chromaScale *= chromaScale;
 
-    return chromaScale * chromaRatio + scaledLuminanceDifference * maxReserves;
+    float3 perceptualTarget = mix(perceptual, perceptualAchromatic, chromaScale);
+    compressed = perceptual_to_sRGB(perceptualTarget);
+
+    return compressed;
 }
 
 //------------------------------------------------------------------------------
@@ -625,6 +655,11 @@ FColorGrading::FColorGrading(FEngine& engine, const Builder& builder) {
         c.colorGradingIn        = selectColorGradingTransformIn(builder->toneMapping);
         c.colorGradingOut       = selectColorGradingTransformOut(builder->toneMapping);
         c.colorGradingLuminance = selectColorGradingLuminance(builder->toneMapping);
+        if (builder->luminanceScaling) {
+            c.colorGradingIn = mat3f{};
+            c.colorGradingOut = mat3f{};
+            c.colorGradingLuminance = LUMINANCE_HK_REC709;
+        }
     }
 
     mDimension = c.lutDimension;

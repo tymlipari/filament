@@ -313,6 +313,13 @@ struct GenericToneMapper::Options {
 
         b = -((-mc + (midGrayOut * (hcs * mc - hc * v)) / u) / v);
         c = (hcs * mc - hc * v) / u;
+
+        // TEMP
+        float a = pow(midGrayIn, contrast);
+        float b = pow(hdrMax, contrast);
+        c = a - midGrayOut * b;
+        inputScale = (a * b * (midGrayOut - 1.0f)) / c;
+        outputScale = midGrayOut * (a - b) / c;
     }
 #pragma clang diagnostic pop
 
@@ -326,6 +333,10 @@ struct GenericToneMapper::Options {
     float b;
     float c;
     float d;
+
+    // TEMP
+    float inputScale;
+    float outputScale;
 };
 
 GenericToneMapper::GenericToneMapper(
@@ -354,8 +365,10 @@ GenericToneMapper& GenericToneMapper::operator=(GenericToneMapper&& rhs) noexcep
 }
 
 float3 GenericToneMapper::operator()(math::float3 x) const noexcept {
-    float3 xc = pow(clamp(x, 0.0f, mOptions->hdrMax), mOptions->contrast);
-    return saturate(xc / (pow(xc, mOptions->d) * mOptions->b + mOptions->c));
+//    float3 xc = pow(clamp(x, 0.0f, mOptions->hdrMax), mOptions->contrast);
+//    return saturate(xc / (pow(xc, mOptions->d) * mOptions->b + mOptions->c));
+    x = pow(x, mOptions->contrast);
+    return mOptions->outputScale * x / (x + mOptions->inputScale);
 }
 
 float GenericToneMapper::getContrast() const noexcept { return  mOptions->contrast; }
