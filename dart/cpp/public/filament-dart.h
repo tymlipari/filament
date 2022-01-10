@@ -15,6 +15,9 @@ typedef struct Fence *FenceRef;
 typedef struct IndexBuffer *IndexBufferRef;
 typedef struct IndirectLight *IndirectLightRef;
 typedef struct LightManager *LightManagerRef;
+typedef struct Material *MaterialRef;
+typedef struct MaterialInstance *MaterialInstanceRef;
+typedef struct Parameter *ParameterRef;
 typedef struct Renderer *RendererRef;
 typedef struct Scene *SceneRef;
 typedef struct SwapChain *SwapChainRef;
@@ -224,6 +227,32 @@ int                 filament_light_manager_get_shadow_caster(LightManagerRef lig
 float               filament_light_manager_get_outer_cone_angle(LightManagerRef lightManager, int entityInstance);
 float               filament_light_manager_get_inner_cone_angle(LightManagerRef ligthManager, int entityInstance);
 
+///
+/// Material
+///
+MaterialRef         filament_engine_create_material_from_payload(EngineRef engine, void* data, int dataLen);
+MaterialInstanceRef filament_material_get_default_instance(MaterialRef material);
+MaterialInstanceRef filament_material_create_instance(MaterialRef material);
+MaterialInstanceRef filament_material_create_instance_with_name(MaterialRef material, const char* name);
+const char*         filament_material_get_name(MaterialRef material);
+int                 filament_material_get_shading(MaterialRef material);
+int                 filament_material_get_interpolation(MaterialRef material);
+int                 filament_material_get_blending_mode(MaterialRef material);
+int                 filament_material_get_refraction_mode(MaterialRef material);
+int                 filament_material_get_refraction_type(MaterialRef material);
+int                 filament_material_get_vertex_domain(MaterialRef material);
+int                 filament_material_get_culling_mode(MaterialRef material);
+int                 filament_material_get_is_color_write_enabled(MaterialRef material);
+int                 filament_material_get_is_depth_write_enabled(MaterialRef material);
+int                 filament_material_get_is_depth_culling_enabled(MaterialRef material);
+int                 filament_material_get_is_double_sided(MaterialRef material);
+float               filament_material_get_mask_threshold(MaterialRef material);
+float               filament_material_get_specular_aa_variance(MaterialRef material);
+float               filament_material_get_specular_aa_threshold(MaterialRef material);
+int                 filament_material_get_required_attributes(MaterialRef material);
+int                 filament_material_get_parameter_count(MaterialRef material);
+int                 filament_material_get_parameters(MaterialRef material, ParameterRef parameters[], int parameterCount);
+int                 filament_material_get_has_parameter(MaterialRef material, const char* name);
 
 #ifdef __cplusplus
 }

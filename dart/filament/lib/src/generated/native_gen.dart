@@ -1773,6 +1773,367 @@ class NativeLibrary {
   late final _filament_light_manager_get_inner_cone_angle =
       _filament_light_manager_get_inner_cone_anglePtr
           .asFunction<double Function(LightManagerRef, int)>();
+
+  /// Material
+  MaterialRef filament_engine_create_material_from_payload(
+    EngineRef engine,
+    ffi.Pointer<ffi.Void> data,
+    int dataLen,
+  ) {
+    return _filament_engine_create_material_from_payload(
+      engine,
+      data,
+      dataLen,
+    );
+  }
+
+  late final _filament_engine_create_material_from_payloadPtr = _lookup<
+      ffi.NativeFunction<
+          MaterialRef Function(EngineRef, ffi.Pointer<ffi.Void>,
+              ffi.Int32)>>('filament_engine_create_material_from_payload');
+  late final _filament_engine_create_material_from_payload =
+      _filament_engine_create_material_from_payloadPtr.asFunction<
+          MaterialRef Function(EngineRef, ffi.Pointer<ffi.Void>, int)>();
+
+  MaterialInstanceRef filament_material_get_default_instance(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_default_instance(
+      material,
+    );
+  }
+
+  late final _filament_material_get_default_instancePtr =
+      _lookup<ffi.NativeFunction<MaterialInstanceRef Function(MaterialRef)>>(
+          'filament_material_get_default_instance');
+  late final _filament_material_get_default_instance =
+      _filament_material_get_default_instancePtr
+          .asFunction<MaterialInstanceRef Function(MaterialRef)>();
+
+  MaterialInstanceRef filament_material_create_instance(
+    MaterialRef material,
+  ) {
+    return _filament_material_create_instance(
+      material,
+    );
+  }
+
+  late final _filament_material_create_instancePtr =
+      _lookup<ffi.NativeFunction<MaterialInstanceRef Function(MaterialRef)>>(
+          'filament_material_create_instance');
+  late final _filament_material_create_instance =
+      _filament_material_create_instancePtr
+          .asFunction<MaterialInstanceRef Function(MaterialRef)>();
+
+  MaterialInstanceRef filament_material_create_instance_with_name(
+    MaterialRef material,
+    ffi.Pointer<ffi.Int8> name,
+  ) {
+    return _filament_material_create_instance_with_name(
+      material,
+      name,
+    );
+  }
+
+  late final _filament_material_create_instance_with_namePtr = _lookup<
+          ffi.NativeFunction<
+              MaterialInstanceRef Function(
+                  MaterialRef, ffi.Pointer<ffi.Int8>)>>(
+      'filament_material_create_instance_with_name');
+  late final _filament_material_create_instance_with_name =
+      _filament_material_create_instance_with_namePtr.asFunction<
+          MaterialInstanceRef Function(MaterialRef, ffi.Pointer<ffi.Int8>)>();
+
+  ffi.Pointer<ffi.Int8> filament_material_get_name(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_name(
+      material,
+    );
+  }
+
+  late final _filament_material_get_namePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int8> Function(MaterialRef)>>(
+          'filament_material_get_name');
+  late final _filament_material_get_name = _filament_material_get_namePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(MaterialRef)>();
+
+  int filament_material_get_shading(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_shading(
+      material,
+    );
+  }
+
+  late final _filament_material_get_shadingPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_shading');
+  late final _filament_material_get_shading =
+      _filament_material_get_shadingPtr.asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_interpolation(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_interpolation(
+      material,
+    );
+  }
+
+  late final _filament_material_get_interpolationPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_interpolation');
+  late final _filament_material_get_interpolation =
+      _filament_material_get_interpolationPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_blending_mode(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_blending_mode(
+      material,
+    );
+  }
+
+  late final _filament_material_get_blending_modePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_blending_mode');
+  late final _filament_material_get_blending_mode =
+      _filament_material_get_blending_modePtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_refraction_mode(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_refraction_mode(
+      material,
+    );
+  }
+
+  late final _filament_material_get_refraction_modePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_refraction_mode');
+  late final _filament_material_get_refraction_mode =
+      _filament_material_get_refraction_modePtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_refraction_type(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_refraction_type(
+      material,
+    );
+  }
+
+  late final _filament_material_get_refraction_typePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_refraction_type');
+  late final _filament_material_get_refraction_type =
+      _filament_material_get_refraction_typePtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_vertex_domain(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_vertex_domain(
+      material,
+    );
+  }
+
+  late final _filament_material_get_vertex_domainPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_vertex_domain');
+  late final _filament_material_get_vertex_domain =
+      _filament_material_get_vertex_domainPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_culling_mode(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_culling_mode(
+      material,
+    );
+  }
+
+  late final _filament_material_get_culling_modePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_culling_mode');
+  late final _filament_material_get_culling_mode =
+      _filament_material_get_culling_modePtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_is_color_write_enabled(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_is_color_write_enabled(
+      material,
+    );
+  }
+
+  late final _filament_material_get_is_color_write_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_is_color_write_enabled');
+  late final _filament_material_get_is_color_write_enabled =
+      _filament_material_get_is_color_write_enabledPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_is_depth_write_enabled(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_is_depth_write_enabled(
+      material,
+    );
+  }
+
+  late final _filament_material_get_is_depth_write_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_is_depth_write_enabled');
+  late final _filament_material_get_is_depth_write_enabled =
+      _filament_material_get_is_depth_write_enabledPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_is_depth_culling_enabled(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_is_depth_culling_enabled(
+      material,
+    );
+  }
+
+  late final _filament_material_get_is_depth_culling_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_is_depth_culling_enabled');
+  late final _filament_material_get_is_depth_culling_enabled =
+      _filament_material_get_is_depth_culling_enabledPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_is_double_sided(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_is_double_sided(
+      material,
+    );
+  }
+
+  late final _filament_material_get_is_double_sidedPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_is_double_sided');
+  late final _filament_material_get_is_double_sided =
+      _filament_material_get_is_double_sidedPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  double filament_material_get_mask_threshold(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_mask_threshold(
+      material,
+    );
+  }
+
+  late final _filament_material_get_mask_thresholdPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(MaterialRef)>>(
+          'filament_material_get_mask_threshold');
+  late final _filament_material_get_mask_threshold =
+      _filament_material_get_mask_thresholdPtr
+          .asFunction<double Function(MaterialRef)>();
+
+  double filament_material_get_specular_aa_variance(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_specular_aa_variance(
+      material,
+    );
+  }
+
+  late final _filament_material_get_specular_aa_variancePtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(MaterialRef)>>(
+          'filament_material_get_specular_aa_variance');
+  late final _filament_material_get_specular_aa_variance =
+      _filament_material_get_specular_aa_variancePtr
+          .asFunction<double Function(MaterialRef)>();
+
+  double filament_material_get_specular_aa_threshold(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_specular_aa_threshold(
+      material,
+    );
+  }
+
+  late final _filament_material_get_specular_aa_thresholdPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(MaterialRef)>>(
+          'filament_material_get_specular_aa_threshold');
+  late final _filament_material_get_specular_aa_threshold =
+      _filament_material_get_specular_aa_thresholdPtr
+          .asFunction<double Function(MaterialRef)>();
+
+  int filament_material_get_required_attributes(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_required_attributes(
+      material,
+    );
+  }
+
+  late final _filament_material_get_required_attributesPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_required_attributes');
+  late final _filament_material_get_required_attributes =
+      _filament_material_get_required_attributesPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_parameter_count(
+    MaterialRef material,
+  ) {
+    return _filament_material_get_parameter_count(
+      material,
+    );
+  }
+
+  late final _filament_material_get_parameter_countPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(MaterialRef)>>(
+          'filament_material_get_parameter_count');
+  late final _filament_material_get_parameter_count =
+      _filament_material_get_parameter_countPtr
+          .asFunction<int Function(MaterialRef)>();
+
+  int filament_material_get_parameters(
+    MaterialRef material,
+    ffi.Pointer<ParameterRef> parameters,
+    int parameterCount,
+  ) {
+    return _filament_material_get_parameters(
+      material,
+      parameters,
+      parameterCount,
+    );
+  }
+
+  late final _filament_material_get_parametersPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(MaterialRef, ffi.Pointer<ParameterRef>,
+              ffi.Int32)>>('filament_material_get_parameters');
+  late final _filament_material_get_parameters =
+      _filament_material_get_parametersPtr.asFunction<
+          int Function(MaterialRef, ffi.Pointer<ParameterRef>, int)>();
+
+  int filament_material_get_has_parameter(
+    MaterialRef material,
+    ffi.Pointer<ffi.Int8> name,
+  ) {
+    return _filament_material_get_has_parameter(
+      material,
+      name,
+    );
+  }
+
+  late final _filament_material_get_has_parameterPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(MaterialRef,
+              ffi.Pointer<ffi.Int8>)>>('filament_material_get_has_parameter');
+  late final _filament_material_get_has_parameter =
+      _filament_material_get_has_parameterPtr
+          .asFunction<int Function(MaterialRef, ffi.Pointer<ffi.Int8>)>();
 }
 
 class BufferObjectBuilder extends ffi.Opaque {}
@@ -1794,6 +2155,12 @@ class IndexBuffer extends ffi.Opaque {}
 class IndirectLight extends ffi.Opaque {}
 
 class LightManager extends ffi.Opaque {}
+
+class Material extends ffi.Opaque {}
+
+class MaterialInstance extends ffi.Opaque {}
+
+class Parameter extends ffi.Opaque {}
 
 class Renderer extends ffi.Opaque {}
 
@@ -1850,3 +2217,6 @@ typedef IndexBufferRef = ffi.Pointer<IndexBuffer>;
 typedef IndirectLightRef = ffi.Pointer<IndirectLight>;
 typedef TextureRef = ffi.Pointer<Texture>;
 typedef LightManagerRef = ffi.Pointer<LightManager>;
+typedef MaterialRef = ffi.Pointer<Material>;
+typedef MaterialInstanceRef = ffi.Pointer<MaterialInstance>;
+typedef ParameterRef = ffi.Pointer<Parameter>;
