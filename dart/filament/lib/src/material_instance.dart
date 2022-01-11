@@ -111,7 +111,7 @@ class MaterialInstance {
         _mNativeHandle, name, x, y, z, w);
   }
 
-  void setParamterFloat(String name, double x) {
+  void setParameterFloat(String name, double x) {
     native.instance
         .filament_material_instance_set_param_float(_mNativeHandle, name, x);
   }
@@ -150,7 +150,7 @@ class MaterialInstance {
   }
 
   void setParameterBoolArray(
-      String name, IntElement type, Iterable<bool> v, int offset, int count) {
+      String name, BooleanElement type, Iterable<bool> v, int offset, int count) {
     Pointer<native.bool>? nArray;
     try {
       // Convert input to native array
@@ -184,7 +184,7 @@ class MaterialInstance {
   }
 
   void setParameterFloatArray(
-      String name, IntElement type, Iterable<double> v, int offset, int count) {
+      String name, FloatElement type, Iterable<double> v, int offset, int count) {
     Pointer<Float>? nArray;
     try {
       // Convert input to native array

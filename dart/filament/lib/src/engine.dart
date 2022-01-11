@@ -112,7 +112,7 @@ class Engine implements Disposable {
     var handle =
         native.instance.filament_engine_create_renderer(_mNativeHandle);
     if (handle == nullptr) throw Exception('Failed to create renderer');
-    return renderer.createRenderer(handle);
+    return renderer.createRenderer(this, handle);
   }
 
   Camera createCamera(int entity) {
@@ -195,4 +195,4 @@ class Engine implements Disposable {
       native.instance.filament_engine_flush_and_wait(_mNativeHandle);
 }
 
-native.EngineRef getEngineNativeHandle(Engine engine) => engine._mNativeHandle;
+native.EngineRef getNativeHandleForEngine(Engine engine) => engine._mNativeHandle;

@@ -23,6 +23,7 @@ typedef struct MaterialInstance *MaterialInstanceRef;
 typedef struct NativeSurface *NativeSurfaceRef;
 typedef struct Parameter *ParameterRef;
 typedef struct Renderer *RendererRef;
+typedef struct RenderTarget *RenderTargetRef;
 typedef struct Scene *SceneRef;
 typedef struct SwapChain *SwapChainRef;
 typedef struct Texture *TextureRef;
@@ -343,6 +344,20 @@ void                filament_material_instance_set_depth_culling(MaterialInstanc
 ///
 NativeSurfaceRef    filament_create_native_surface(int width, int height);
 void                filament_destroy_native_surface(NativeSurfaceRef surface);
+
+///
+/// RenderTarget
+///
+typedef struct {
+    int attachment;
+    TextureRef texture;
+    int mipLevel;
+    int cubemapFace;
+    int layer;
+} filament_render_target_attachment_config_t;
+
+RenderTargetRef     filament_engine_create_render_target(EngineRef engine, filament_render_target_attachment_config_t attachmentConfigs[], int attachmentConfigsCount);
+void                filament_destroy_render_target(RenderTargetRef renderTarget);
 
 #ifdef __cplusplus
 }

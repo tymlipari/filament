@@ -20,12 +20,12 @@ late final filament_native.NativeLibrary instance =
 /// Native type extensions
 
 extension Vector3Conversion on filament_native.Vector3 {
-  List<double> toList() => List.of([this.x, this.y, this.z], growable: false);
+  List<double> toList() => List.unmodifiable([this.x, this.y, this.z]);
 }
 
 extension Vector4Conversion on filament_native.Vector4 {
   List<double> toList() =>
-      List.of([this.x, this.y, this.z, this.w], growable: false);
+      List.unmodifiable([this.x, this.y, this.z, this.w]);
 }
 
 class FilamentAllocator implements Allocator {
@@ -38,6 +38,10 @@ class FilamentAllocator implements Allocator {
   @override
   Pointer<T> allocate<T extends NativeType>(int byteCount, {int? alignment}) {
     return instance.filament_allocate(byteCount).cast<T>();
+  }
+
+  Pointer<T> allocateArray<T extends NativeType>(int byteCount, int n) {
+    return instance.filament_allocate(byteCount * n).cast<T>();
   }
 
   @override
@@ -68,7 +72,7 @@ class NativeObjectFactory {
   }
 
   static void insert<T extends Object>(Pointer handle, T obj,
-      {bool overwrite = false}) {
+      [bool overwrite = false]) {
     assert(handle != nullptr);
     if (_mObjectCache.containsKey(handle) && !overwrite) {
       throw Exception(

@@ -35,4 +35,4 @@ class Texture implements Disposable {
 
 Texture createTextureFromNative(native.TextureRef handle) => Texture._(handle);
 
-native.TextureRef getTextureNativeHandle(Texture tex) => tex._mNativeHandle;
+native.TextureRef getNativeHandleForTexture(Texture tex) => tex._mNativeHandle;

@@ -20,8 +20,8 @@ class IndirectLight {
   }) {
 
     var handle = native.instance.filament_engine_create_indirect_light(
-      getEngineNativeHandle(engine), 
-      cubeMap != null ? getTextureNativeHandle(cubeMap) : nullptr, 
+      getNativeHandleForEngine(engine), 
+      cubeMap != null ? getNativeHandleForTexture(cubeMap) : nullptr, 
       irradianceBands, irradianceSh, irradianceShCount, 
       radianceBands, radianceSh, radianceShCount, 
       envIntensity, 

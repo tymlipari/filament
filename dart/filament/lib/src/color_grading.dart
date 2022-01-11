@@ -52,7 +52,7 @@ class ColorGrading implements Disposable {
     required WhiteBalance whiteBalance,
   }) {
     var handle = native.instance
-        .filament_engine_create_color_grading(getEngineNativeHandle(engine));
+        .filament_engine_create_color_grading(getNativeHandleForEngine(engine));
 
     if (handle == nullptr) throw Exception('Failed to create ColorGrading');
     return ColorGrading._(handle);

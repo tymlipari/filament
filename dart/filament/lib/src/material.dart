@@ -6,6 +6,7 @@ import 'package:filament/src/engine.dart';
 import 'package:filament/src/material_instance.dart';
 import 'package:filament/src/native.dart' as native;
 import 'package:filament/src/vertex_buffer.dart';
+import 'texture.dart';
 
 enum MaterialShading { unlit, lit, subsurface, cloth, specularGlossiness }
 
@@ -95,7 +96,7 @@ class Material implements Disposable {
   static Material fromPayload(
       {required Buffer buffer, required Engine engine}) {
     var handle = native.instance.filament_engine_create_material_from_payload(
-        getEngineNativeHandle(engine), buffer, buffer.length);
+        getNativeHandleForEngine(engine), buffer, buffer.length);
     if (handle == nullptr) throw Exception("Couldn't create Material");
     return Material._(handle);
   }
@@ -263,7 +264,7 @@ class Material implements Disposable {
   }
 
   void setDefaultParameterBool(String name, bool x) {
-    _mDefaultInstance.setParameter(name, x);
+    _mDefaultInstance.setParameterBool(name, x);
   }
 
   void setDefaultParameterFloat(String name, double x) {

@@ -23,7 +23,7 @@ class IndexBuffer {
     required int indexCount,
     required IndexType indexType,
   }) {
-    var handle = native.instance.filament_engine_create_index_buffer(getEngineNativeHandle(engine), indexCount, indexType.index);
+    var handle = native.instance.filament_engine_create_index_buffer(getNativeHandleForEngine(engine), indexCount, indexType.index);
     if (handle == nullptr) throw Exception('Failed to create index buffer');
     return IndexBuffer._(handle, engine);
   }
@@ -36,8 +36,8 @@ class IndexBuffer {
     Object? callback
   }) {
     native.instance.filament_index_buffer_set_buffer(
-      getEngineNativeHandle(_mEngine), 
-      buffer, 
+      getNativeHandleForEngine(_mEngine), 
+      _mNativeHandle, 
       destOffsetInBytes, 
       count);
   }

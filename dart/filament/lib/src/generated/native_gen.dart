@@ -3114,6 +3114,44 @@ class NativeLibrary {
   late final _filament_destroy_native_surface =
       _filament_destroy_native_surfacePtr
           .asFunction<void Function(NativeSurfaceRef)>();
+
+  RenderTargetRef filament_engine_create_render_target(
+    EngineRef engine,
+    ffi.Pointer<filament_render_target_attachment_config_t> attachmentConfigs,
+    int attachmentConfigsCount,
+  ) {
+    return _filament_engine_create_render_target(
+      engine,
+      attachmentConfigs,
+      attachmentConfigsCount,
+    );
+  }
+
+  late final _filament_engine_create_render_targetPtr = _lookup<
+      ffi.NativeFunction<
+          RenderTargetRef Function(
+              EngineRef,
+              ffi.Pointer<filament_render_target_attachment_config_t>,
+              ffi.Int32)>>('filament_engine_create_render_target');
+  late final _filament_engine_create_render_target =
+      _filament_engine_create_render_targetPtr.asFunction<
+          RenderTargetRef Function(EngineRef,
+              ffi.Pointer<filament_render_target_attachment_config_t>, int)>();
+
+  void filament_destroy_render_target(
+    RenderTargetRef renderTarget,
+  ) {
+    return _filament_destroy_render_target(
+      renderTarget,
+    );
+  }
+
+  late final _filament_destroy_render_targetPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(RenderTargetRef)>>(
+          'filament_destroy_render_target');
+  late final _filament_destroy_render_target =
+      _filament_destroy_render_targetPtr
+          .asFunction<void Function(RenderTargetRef)>();
 }
 
 class BufferObjectBuilder extends ffi.Opaque {}
@@ -3145,6 +3183,8 @@ class NativeSurface extends ffi.Opaque {}
 class Parameter extends ffi.Opaque {}
 
 class Renderer extends ffi.Opaque {}
+
+class RenderTarget extends ffi.Opaque {}
 
 class Scene extends ffi.Opaque {}
 
@@ -3256,3 +3296,22 @@ typedef MaterialRef = ffi.Pointer<Material>;
 typedef MaterialInstanceRef = ffi.Pointer<MaterialInstance>;
 typedef ParameterRef = ffi.Pointer<Parameter>;
 typedef NativeSurfaceRef = ffi.Pointer<NativeSurface>;
+
+/// RenderTarget
+class filament_render_target_attachment_config_t extends ffi.Struct {
+  @ffi.Int32()
+  external int attachment;
+
+  external TextureRef texture;
+
+  @ffi.Int32()
+  external int mipLevel;
+
+  @ffi.Int32()
+  external int cubemapFace;
+
+  @ffi.Int32()
+  external int layer;
+}
+
+typedef RenderTargetRef = ffi.Pointer<RenderTarget>;
