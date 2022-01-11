@@ -1,16 +1,41 @@
+import 'package:filament/src/disposable.dart';
 import 'package:filament/src/native.dart' as native;
 
-class EntityManager {
+class EntityManager implements Disposable {
   native.EntityManagerRef _mNativeHandle;
 
-  EntityManager._(this._mNativeHandle);
-  EntityManager._global() : this._(native.instance.filament_get_entity_manager());
+  ///
+  /// Constructors
+  ///
 
-  int createEntity() => native.instance.filament_entity_manager_create_entity(_mNativeHandle);
+  factory EntityManager._(native.EntityManagerRef handle) {
+    var entityManager =
+        native.NativeObjectFactory.tryGet<EntityManager>(handle);
+    if (entityManager == null) {
+      entityManager = EntityManager._fromHandle(handle);
+      native.NativeObjectFactory.insert(handle, entityManager);
+    }
+    return entityManager;
+  }
 
-  void destroyEntity(int entityId) => native.instance.filament_entity_manager_destroy_entity(entityId);
+  EntityManager._fromHandle(this._mNativeHandle);
 
-  bool isEntityAlive(int entityId) => native.instance.filament_entity_manager_entity_is_alive(entityId) != 0;
+  static EntityManager _global() =>
+      EntityManager._(native.instance.filament_get_entity_manager());
+
+  ///
+  /// Methods
+  ///
+
+  int createEntity() =>
+      native.instance.filament_entity_manager_create_entity(_mNativeHandle);
+
+  void destroyEntity(int entityId) =>
+      native.instance.filament_entity_manager_destroy_entity(entityId);
+
+  bool isEntityAlive(int entityId) =>
+      native.instance.filament_entity_manager_entity_is_alive(entityId) != 0;
 }
 
-EntityManager createEntityManagerFromNative(native.EntityManagerRef handle) => EntityManager._(handle);
+EntityManager createEntityManagerFromNative(native.EntityManagerRef handle) =>
+    EntityManager._(handle);

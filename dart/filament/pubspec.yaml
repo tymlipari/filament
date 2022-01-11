@@ -22,5 +22,5 @@ ffigen:
   headers:
     entry-points:
       - '../cpp/public/filament-dart.h'
-  llvm-path:
-    - '/Users/tym/RosettaLibs/llvm-13.0.0'
+  # llvm-path:
+  #   - '/Users/tym/RosettaLibs/llvm-13.0.0'

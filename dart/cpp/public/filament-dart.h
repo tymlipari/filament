@@ -5,6 +5,9 @@
 extern "C" {
 #endif
 
+// todo clean up
+typedef unsigned char bool;
+
 typedef struct BufferObjectBuilder *BufferObjectBuilderRef;
 typedef struct BufferObject *BufferObjectRef;
 typedef struct Camera *CameraRef;
@@ -17,6 +20,7 @@ typedef struct IndirectLight *IndirectLightRef;
 typedef struct LightManager *LightManagerRef;
 typedef struct Material *MaterialRef;
 typedef struct MaterialInstance *MaterialInstanceRef;
+typedef struct NativeSurface *NativeSurfaceRef;
 typedef struct Parameter *ParameterRef;
 typedef struct Renderer *RendererRef;
 typedef struct Scene *SceneRef;
@@ -54,6 +58,16 @@ typedef struct {
     float m[4][4];
   };
 } Matrix4x4, *Matrix4x4Ref;
+
+///
+/// Common types
+///
+typedef struct {
+  int left;
+  int bottom;
+  int width;
+  int height;
+} filament_viewport_t;
 
 ///
 /// Memory helpers
@@ -96,8 +110,42 @@ void filament_destroy_view(ViewRef view);
 ///
 /// Renderer
 ///
+typedef struct {
+  float refreshRate;
+  long long presentationDeadlineNanos;
+  long long vsyncOffsetNanos;
+} filament_display_info_t;
+
+typedef struct {
+  float interval;
+  float headRoomRatio;
+  float scaleRate;
+  int history;
+} filament_framerate_options_t;
+
+typedef struct {
+  Vector4 clearColor;
+  bool clear;
+  bool discard;
+} filament_clear_options_t;
+
 RendererRef filament_engine_create_renderer(EngineRef engine);
 void filament_destroy_renderer(RendererRef renderer);
+
+void                          filament_renderer_set_display_info(RendererRef renderer, filament_display_info_t info);
+filament_display_info_t       filament_renderer_get_display_info(RendererRef renderer);
+void                          filament_renderer_set_framerate_options(RendererRef renderer, filament_framerate_options_t options);
+filament_framerate_options_t  filament_renderer_get_framerate_options(RendererRef renderer);
+void                          filament_renderer_set_clear_options(RendererRef renderer, filament_clear_options_t options);
+filament_clear_options_t      filament_renderer_get_clear_options(RendererRef renderer);
+
+bool                          filament_renderer_begin_frame(RendererRef renderer, SwapChainRef swapChain, long long frameTimeNanos);
+void                          filament_renderer_end_frame(RendererRef renderer);
+void                          filament_renderer_render(RendererRef renderer, ViewRef view);
+void                          filament_renderer_render_standalone_view(RendererRef renderer, ViewRef view);
+void                          filament_renderer_copy_frame(RendererRef renderer, SwapChainRef dest, filament_viewport_t destViewport, filament_viewport_t srcViewport, int flags);
+
+void                          filament_renderer_reset_user_time(RendererRef renderer);
 
 ///
 /// Camera
@@ -253,6 +301,48 @@ int                 filament_material_get_required_attributes(MaterialRef materi
 int                 filament_material_get_parameter_count(MaterialRef material);
 int                 filament_material_get_parameters(MaterialRef material, ParameterRef parameters[], int parameterCount);
 int                 filament_material_get_has_parameter(MaterialRef material, const char* name);
+
+///
+/// MaterialInstance
+///
+MaterialRef         filament_material_instance_get_material(MaterialInstanceRef materialInstance);
+MaterialInstanceRef filament_duplicate_material_instance(MaterialInstanceRef otherInstance, const char* newName);
+const char*         filament_material_instance_get_name(MaterialInstanceRef materialInstance);
+void                filament_material_instance_set_param_bool(MaterialInstanceRef materialInstance, const char* name, bool x);
+void                filament_material_instance_set_param_bool2(MaterialInstanceRef materialInstance, const char* name, bool x, bool y);
+void                filament_material_instance_set_param_bool3(MaterialInstanceRef materialInstance, const char* name, bool x, bool y, bool z);
+void                filament_material_instance_set_param_bool4(MaterialInstanceRef materialInstance, const char* name, bool x, bool y, bool z, bool w);
+void                filament_material_instance_set_param_int(MaterialInstanceRef materialInstance, const char* name, int x);
+void                filament_material_instance_set_param_int2(MaterialInstanceRef materialInstance, const char* name, int x, int y);
+void                filament_material_instance_set_param_int3(MaterialInstanceRef materialInstance, const char* name, int x, int y, int z);
+void                filament_material_instance_set_param_int4(MaterialInstanceRef materialInstance, const char* name, int x, int y, int z, int w);
+void                filament_material_instance_set_param_float(MaterialInstanceRef materialInstance, const char* name, float x);
+void                filament_material_instance_set_param_float2(MaterialInstanceRef materialInstance, const char* name, float x, float y);
+void                filament_material_instance_set_param_float3(MaterialInstanceRef materialInstance, const char* name, float x, float y, float z);
+void                filament_material_instance_set_param_float4(MaterialInstanceRef materialInstance, const char* name, float x, float y, float z, float w);
+void                filament_material_instance_set_param_rgb(MaterialInstanceRef materialInstance, const char* name, float r, float g, float b);
+void                filament_material_instance_set_param_rgba(MaterialInstanceRef materialInstance, const char* name, float r, float g, float b, float a);
+void                filament_material_instance_set_param_bool_array(MaterialInstanceRef materialInstance, const char* name, int type, bool v[], int offset, int count);
+void                filament_material_instance_set_param_int_array(MaterialInstanceRef materialInstance, const char* name, int type, int v[], int offset, int count);
+void                filament_material_instance_set_param_float_array(MaterialInstanceRef materialInstance, const char* name, int type, float v[], int offset, int count);
+void                filament_material_instance_set_param_texture(MaterialInstanceRef materialInstance, const char* name, TextureRef texture, int sampler);
+void                filament_material_instance_set_scissor(MaterialInstanceRef materialInstance, int left, int bottom, int width, int height);
+void                filament_material_instance_unset_scissor(MaterialInstanceRef materialInstance);
+void                filament_material_instance_set_polygon_offset(MaterialInstanceRef materialInstance, float scale, float constant);
+void                filament_material_instance_set_mask_threshold(MaterialInstanceRef materialInstance, float threshold);
+void                filament_material_instance_set_specular_aa_variance(MaterialInstanceRef materialInstance, float variance);
+void                filament_material_instance_set_specular_aa_threshold(MaterialInstanceRef materialInstance, float threshold);
+void                filament_material_instance_set_double_sided(MaterialInstanceRef materialInstance, bool doubleSided);
+void                filament_material_instance_set_culling_mode(MaterialInstanceRef materialInstance, int cullingMode);
+void                filament_material_instance_set_color_write(MaterialInstanceRef materialInstance, bool enable);
+void                filament_material_instance_set_depth_write(MaterialInstanceRef materialInstance, bool enable);
+void                filament_material_instance_set_depth_culling(MaterialInstanceRef materialInstance, bool enable);
+
+///
+/// NativeSurface
+///
+NativeSurfaceRef    filament_create_native_surface(int width, int height);
+void                filament_destroy_native_surface(NativeSurfaceRef surface);
 
 #ifdef __cplusplus
 }
