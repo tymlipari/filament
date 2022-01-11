@@ -53,3 +53,5 @@ class IndirectLight {
     return native.instance.filament_indirect_light_get_color_estimate(colorIntensity, sh, shCount, x, y, z);
   }
 }
+
+native.IndirectLightRef getNativeHandleFromIndirectLight(IndirectLight? light) => light?._mNativeHandle ?? nullptr;

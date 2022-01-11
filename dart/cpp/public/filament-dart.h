@@ -25,6 +25,7 @@ typedef struct Parameter *ParameterRef;
 typedef struct Renderer *RendererRef;
 typedef struct RenderTarget *RenderTargetRef;
 typedef struct Scene *SceneRef;
+typedef struct Skybox *SkyboxRef;
 typedef struct SwapChain *SwapChainRef;
 typedef struct Texture *TextureRef;
 typedef struct View *ViewRef;
@@ -183,8 +184,18 @@ float filament_camera_get_focus_distance(CameraRef camera);
 double filament_camera_compute_effective_focal_length(double focalLength, double focusDistance);
 double filament_camera_compute_effective_fov(double fovInDegrees, double focusDistance);
 
-SceneRef filament_engine_create_scene(EngineRef engine);
-void filament_destroy_scene(SceneRef scene);
+///
+/// Scene
+///
+SceneRef    filament_engine_create_scene(EngineRef engine);
+void        filament_destroy_scene(SceneRef scene);
+
+void        filament_scene_set_skybox(SceneRef scene, SkyboxRef skybox);
+void        filament_scene_set_indirect_light(SceneRef scene, IndirectLightRef light);
+void        filament_scene_add_entity(SceneRef scene, int entity);
+void        filament_scene_remove_entity(SceneRef scene, int entity);
+int         filament_scene_get_renderable_count(SceneRef scene);
+int         filament_scene_get_light_count(SceneRef scene);
 
 ///
 /// Fence
@@ -358,6 +369,8 @@ typedef struct {
 
 RenderTargetRef     filament_engine_create_render_target(EngineRef engine, filament_render_target_attachment_config_t attachmentConfigs[], int attachmentConfigsCount);
 void                filament_destroy_render_target(RenderTargetRef renderTarget);
+
+
 
 #ifdef __cplusplus
 }

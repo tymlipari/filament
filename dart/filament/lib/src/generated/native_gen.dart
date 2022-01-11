@@ -947,6 +947,7 @@ class NativeLibrary {
       _filament_camera_compute_effective_fovPtr
           .asFunction<double Function(double, double)>();
 
+  /// Scene
   SceneRef filament_engine_create_scene(
     EngineRef engine,
   ) {
@@ -974,6 +975,100 @@ class NativeLibrary {
           'filament_destroy_scene');
   late final _filament_destroy_scene =
       _filament_destroy_scenePtr.asFunction<void Function(SceneRef)>();
+
+  void filament_scene_set_skybox(
+    SceneRef scene,
+    SkyboxRef skybox,
+  ) {
+    return _filament_scene_set_skybox(
+      scene,
+      skybox,
+    );
+  }
+
+  late final _filament_scene_set_skyboxPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(SceneRef, SkyboxRef)>>(
+          'filament_scene_set_skybox');
+  late final _filament_scene_set_skybox = _filament_scene_set_skyboxPtr
+      .asFunction<void Function(SceneRef, SkyboxRef)>();
+
+  void filament_scene_set_indirect_light(
+    SceneRef scene,
+    IndirectLightRef light,
+  ) {
+    return _filament_scene_set_indirect_light(
+      scene,
+      light,
+    );
+  }
+
+  late final _filament_scene_set_indirect_lightPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(SceneRef, IndirectLightRef)>>(
+      'filament_scene_set_indirect_light');
+  late final _filament_scene_set_indirect_light =
+      _filament_scene_set_indirect_lightPtr
+          .asFunction<void Function(SceneRef, IndirectLightRef)>();
+
+  void filament_scene_add_entity(
+    SceneRef scene,
+    int entity,
+  ) {
+    return _filament_scene_add_entity(
+      scene,
+      entity,
+    );
+  }
+
+  late final _filament_scene_add_entityPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(SceneRef, ffi.Int32)>>(
+          'filament_scene_add_entity');
+  late final _filament_scene_add_entity =
+      _filament_scene_add_entityPtr.asFunction<void Function(SceneRef, int)>();
+
+  void filament_scene_remove_entity(
+    SceneRef scene,
+    int entity,
+  ) {
+    return _filament_scene_remove_entity(
+      scene,
+      entity,
+    );
+  }
+
+  late final _filament_scene_remove_entityPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(SceneRef, ffi.Int32)>>(
+          'filament_scene_remove_entity');
+  late final _filament_scene_remove_entity = _filament_scene_remove_entityPtr
+      .asFunction<void Function(SceneRef, int)>();
+
+  int filament_scene_get_renderable_count(
+    SceneRef scene,
+  ) {
+    return _filament_scene_get_renderable_count(
+      scene,
+    );
+  }
+
+  late final _filament_scene_get_renderable_countPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(SceneRef)>>(
+          'filament_scene_get_renderable_count');
+  late final _filament_scene_get_renderable_count =
+      _filament_scene_get_renderable_countPtr
+          .asFunction<int Function(SceneRef)>();
+
+  int filament_scene_get_light_count(
+    SceneRef scene,
+  ) {
+    return _filament_scene_get_light_count(
+      scene,
+    );
+  }
+
+  late final _filament_scene_get_light_countPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(SceneRef)>>(
+          'filament_scene_get_light_count');
+  late final _filament_scene_get_light_count =
+      _filament_scene_get_light_countPtr.asFunction<int Function(SceneRef)>();
 
   /// Fence
   FenceRef filament_engine_create_fence(
@@ -3188,6 +3283,8 @@ class RenderTarget extends ffi.Opaque {}
 
 class Scene extends ffi.Opaque {}
 
+class Skybox extends ffi.Opaque {}
+
 class SwapChain extends ffi.Opaque {}
 
 class Texture extends ffi.Opaque {}
@@ -3284,12 +3381,13 @@ typedef bool = ffi.Uint8;
 typedef RendererRef = ffi.Pointer<Renderer>;
 typedef CameraRef = ffi.Pointer<Camera>;
 typedef SceneRef = ffi.Pointer<Scene>;
+typedef SkyboxRef = ffi.Pointer<Skybox>;
+typedef IndirectLightRef = ffi.Pointer<IndirectLight>;
 typedef FenceRef = ffi.Pointer<Fence>;
 typedef BufferObjectBuilderRef = ffi.Pointer<BufferObjectBuilder>;
 typedef BufferObjectRef = ffi.Pointer<BufferObject>;
 typedef ColorGradingRef = ffi.Pointer<ColorGrading>;
 typedef IndexBufferRef = ffi.Pointer<IndexBuffer>;
-typedef IndirectLightRef = ffi.Pointer<IndirectLight>;
 typedef TextureRef = ffi.Pointer<Texture>;
 typedef LightManagerRef = ffi.Pointer<LightManager>;
 typedef MaterialRef = ffi.Pointer<Material>;
