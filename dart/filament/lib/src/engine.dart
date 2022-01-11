@@ -76,7 +76,7 @@ class Engine implements Disposable {
     var handle = native.instance
         .filament_engine_create_swapchain(_mNativeHandle, surface, flags);
     if (handle == nullptr) throw Exception('Failed to create swap chain');
-    return swapchain.createSwapChain(handle);
+    return swapchain.createSwapChain(handle, surface);
   }
 
   swapchain.SwapChain createHeadlessSwapChain(
@@ -99,7 +99,7 @@ class Engine implements Disposable {
     if (handle == nullptr) {
       throw Exception('Failed to create swap chain from native instance');
     }
-    return swapchain.createSwapChain(handle);
+    return swapchain.createSwapChain(handle, surface);
   }
 
   view.View createView() {
@@ -195,4 +195,5 @@ class Engine implements Disposable {
       native.instance.filament_engine_flush_and_wait(_mNativeHandle);
 }
 
-native.EngineRef getNativeHandleForEngine(Engine engine) => engine._mNativeHandle;
+native.EngineRef getNativeHandleForEngine(Engine engine) =>
+    engine._mNativeHandle;
