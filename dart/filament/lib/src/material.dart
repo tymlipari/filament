@@ -7,6 +7,7 @@ import 'package:filament/src/material_instance.dart';
 import 'package:filament/src/native.dart' as native;
 import 'package:filament/src/vertex_buffer.dart';
 import 'texture.dart';
+import 'texture_sampler.dart';
 
 enum MaterialShading { unlit, lit, subsurface, cloth, specularGlossiness }
 

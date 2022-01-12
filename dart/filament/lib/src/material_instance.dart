@@ -4,6 +4,9 @@ import 'package:filament/src/colors.dart';
 import 'package:filament/src/native.dart' as native;
 import 'package:filament/src/material.dart';
 
+import 'texture.dart';
+import 'texture_sampler.dart';
+
 enum BooleanElement { bool, bool2, bool3, bool4 }
 
 enum IntElement { int, int2, int3, int4 }
@@ -146,7 +149,7 @@ class MaterialInstance {
   void setParameterTexture(
       String name, Texture texture, TextureSampler sampler) {
     native.instance.filament_material_instance_set_param_texture(
-        _mNativeHandle, name, texture, sampler);
+        _mNativeHandle, name, getNativeHandleForTexture(texture), getNativeHandleForTextureSampler(sampler));
   }
 
   void setParameterBoolArray(

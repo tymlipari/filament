@@ -2956,7 +2956,7 @@ class NativeLibrary {
     MaterialInstanceRef materialInstance,
     ffi.Pointer<ffi.Int8> name,
     TextureRef texture,
-    int sampler,
+    TextureSamplerRef sampler,
   ) {
     return _filament_material_instance_set_param_texture(
       materialInstance,
@@ -2967,16 +2967,14 @@ class NativeLibrary {
   }
 
   late final _filament_material_instance_set_param_texturePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(
-              MaterialInstanceRef,
-              ffi.Pointer<ffi.Int8>,
-              TextureRef,
-              ffi.Int32)>>('filament_material_instance_set_param_texture');
+          ffi.NativeFunction<
+              ffi.Void Function(MaterialInstanceRef, ffi.Pointer<ffi.Int8>,
+                  TextureRef, TextureSamplerRef)>>(
+      'filament_material_instance_set_param_texture');
   late final _filament_material_instance_set_param_texture =
       _filament_material_instance_set_param_texturePtr.asFunction<
-          void Function(
-              MaterialInstanceRef, ffi.Pointer<ffi.Int8>, TextureRef, int)>();
+          void Function(MaterialInstanceRef, ffi.Pointer<ffi.Int8>, TextureRef,
+              TextureSamplerRef)>();
 
   void filament_material_instance_set_scissor(
     MaterialInstanceRef materialInstance,
@@ -3247,6 +3245,319 @@ class NativeLibrary {
   late final _filament_destroy_render_target =
       _filament_destroy_render_targetPtr
           .asFunction<void Function(RenderTargetRef)>();
+
+  /// TextureSampler
+  TextureSamplerRef filament_create_texture_sampler(
+    int min,
+    int mag,
+    int wrapS,
+    int wrapT,
+    int wrapR,
+  ) {
+    return _filament_create_texture_sampler(
+      min,
+      mag,
+      wrapS,
+      wrapT,
+      wrapR,
+    );
+  }
+
+  late final _filament_create_texture_samplerPtr = _lookup<
+      ffi.NativeFunction<
+          TextureSamplerRef Function(ffi.Int32, ffi.Int32, ffi.Int32, ffi.Int32,
+              ffi.Int32)>>('filament_create_texture_sampler');
+  late final _filament_create_texture_sampler =
+      _filament_create_texture_samplerPtr
+          .asFunction<TextureSamplerRef Function(int, int, int, int, int)>();
+
+  TextureSamplerRef filament_create_compare_texture_sampler(
+    int mode,
+    int function,
+  ) {
+    return _filament_create_compare_texture_sampler(
+      mode,
+      function,
+    );
+  }
+
+  late final _filament_create_compare_texture_samplerPtr = _lookup<
+          ffi.NativeFunction<TextureSamplerRef Function(ffi.Int32, ffi.Int32)>>(
+      'filament_create_compare_texture_sampler');
+  late final _filament_create_compare_texture_sampler =
+      _filament_create_compare_texture_samplerPtr
+          .asFunction<TextureSamplerRef Function(int, int)>();
+
+  void filament_destroy_texture_sampler(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_destroy_texture_sampler(
+      sampler,
+    );
+  }
+
+  late final _filament_destroy_texture_samplerPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(TextureSamplerRef)>>(
+          'filament_destroy_texture_sampler');
+  late final _filament_destroy_texture_sampler =
+      _filament_destroy_texture_samplerPtr
+          .asFunction<void Function(TextureSamplerRef)>();
+
+  int filament_texture_sampler_get_min_filter(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_min_filter(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_min_filterPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_min_filter');
+  late final _filament_texture_sampler_get_min_filter =
+      _filament_texture_sampler_get_min_filterPtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_min_filter(
+    TextureSamplerRef sampler,
+    int minFilter,
+  ) {
+    return _filament_texture_sampler_set_min_filter(
+      sampler,
+      minFilter,
+    );
+  }
+
+  late final _filament_texture_sampler_set_min_filterPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_min_filter');
+  late final _filament_texture_sampler_set_min_filter =
+      _filament_texture_sampler_set_min_filterPtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  int filament_texture_sampler_get_mag_filter(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_mag_filter(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_mag_filterPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_mag_filter');
+  late final _filament_texture_sampler_get_mag_filter =
+      _filament_texture_sampler_get_mag_filterPtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_mag_filter(
+    TextureSamplerRef sampler,
+    int magFilter,
+  ) {
+    return _filament_texture_sampler_set_mag_filter(
+      sampler,
+      magFilter,
+    );
+  }
+
+  late final _filament_texture_sampler_set_mag_filterPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_mag_filter');
+  late final _filament_texture_sampler_set_mag_filter =
+      _filament_texture_sampler_set_mag_filterPtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  int filament_texture_sampler_get_wrap_mode_s(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_wrap_mode_s(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_wrap_mode_sPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_wrap_mode_s');
+  late final _filament_texture_sampler_get_wrap_mode_s =
+      _filament_texture_sampler_get_wrap_mode_sPtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_wrap_mode_s(
+    TextureSamplerRef sampler,
+    int wrapMode,
+  ) {
+    return _filament_texture_sampler_set_wrap_mode_s(
+      sampler,
+      wrapMode,
+    );
+  }
+
+  late final _filament_texture_sampler_set_wrap_mode_sPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_wrap_mode_s');
+  late final _filament_texture_sampler_set_wrap_mode_s =
+      _filament_texture_sampler_set_wrap_mode_sPtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  int filament_texture_sampler_get_wrap_mode_t(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_wrap_mode_t(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_wrap_mode_tPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_wrap_mode_t');
+  late final _filament_texture_sampler_get_wrap_mode_t =
+      _filament_texture_sampler_get_wrap_mode_tPtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_wrap_mode_t(
+    TextureSamplerRef sampler,
+    int wrapMode,
+  ) {
+    return _filament_texture_sampler_set_wrap_mode_t(
+      sampler,
+      wrapMode,
+    );
+  }
+
+  late final _filament_texture_sampler_set_wrap_mode_tPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_wrap_mode_t');
+  late final _filament_texture_sampler_set_wrap_mode_t =
+      _filament_texture_sampler_set_wrap_mode_tPtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  int filament_texture_sampler_get_wrap_mode_r(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_wrap_mode_r(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_wrap_mode_rPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_wrap_mode_r');
+  late final _filament_texture_sampler_get_wrap_mode_r =
+      _filament_texture_sampler_get_wrap_mode_rPtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_wrap_mode_r(
+    TextureSamplerRef sampler,
+    int wrapMode,
+  ) {
+    return _filament_texture_sampler_set_wrap_mode_r(
+      sampler,
+      wrapMode,
+    );
+  }
+
+  late final _filament_texture_sampler_set_wrap_mode_rPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_wrap_mode_r');
+  late final _filament_texture_sampler_set_wrap_mode_r =
+      _filament_texture_sampler_set_wrap_mode_rPtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  int filament_texture_sampler_get_compare_mode(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_compare_mode(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_compare_modePtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_compare_mode');
+  late final _filament_texture_sampler_get_compare_mode =
+      _filament_texture_sampler_get_compare_modePtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_compare_mode(
+    TextureSamplerRef sampler,
+    int compareMode,
+  ) {
+    return _filament_texture_sampler_set_compare_mode(
+      sampler,
+      compareMode,
+    );
+  }
+
+  late final _filament_texture_sampler_set_compare_modePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_compare_mode');
+  late final _filament_texture_sampler_set_compare_mode =
+      _filament_texture_sampler_set_compare_modePtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  int filament_texture_sampler_get_compare_function(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_compare_function(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_compare_functionPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_compare_function');
+  late final _filament_texture_sampler_get_compare_function =
+      _filament_texture_sampler_get_compare_functionPtr
+          .asFunction<int Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_compare_function(
+    TextureSamplerRef sampler,
+    int compareFunction,
+  ) {
+    return _filament_texture_sampler_set_compare_function(
+      sampler,
+      compareFunction,
+    );
+  }
+
+  late final _filament_texture_sampler_set_compare_functionPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Int32)>>(
+      'filament_texture_sampler_set_compare_function');
+  late final _filament_texture_sampler_set_compare_function =
+      _filament_texture_sampler_set_compare_functionPtr
+          .asFunction<void Function(TextureSamplerRef, int)>();
+
+  double filament_texture_sampler_get_ansiotropy(
+    TextureSamplerRef sampler,
+  ) {
+    return _filament_texture_sampler_get_ansiotropy(
+      sampler,
+    );
+  }
+
+  late final _filament_texture_sampler_get_ansiotropyPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(TextureSamplerRef)>>(
+          'filament_texture_sampler_get_ansiotropy');
+  late final _filament_texture_sampler_get_ansiotropy =
+      _filament_texture_sampler_get_ansiotropyPtr
+          .asFunction<double Function(TextureSamplerRef)>();
+
+  void filament_texture_sampler_set_ansiotropy(
+    TextureSamplerRef sampler,
+    double ansiotropy,
+  ) {
+    return _filament_texture_sampler_set_ansiotropy(
+      sampler,
+      ansiotropy,
+    );
+  }
+
+  late final _filament_texture_sampler_set_ansiotropyPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(TextureSamplerRef, ffi.Float)>>(
+      'filament_texture_sampler_set_ansiotropy');
+  late final _filament_texture_sampler_set_ansiotropy =
+      _filament_texture_sampler_set_ansiotropyPtr
+          .asFunction<void Function(TextureSamplerRef, double)>();
 }
 
 class BufferObjectBuilder extends ffi.Opaque {}
@@ -3288,6 +3599,8 @@ class Skybox extends ffi.Opaque {}
 class SwapChain extends ffi.Opaque {}
 
 class Texture extends ffi.Opaque {}
+
+class TextureSampler extends ffi.Opaque {}
 
 class View extends ffi.Opaque {}
 
@@ -3393,6 +3706,7 @@ typedef LightManagerRef = ffi.Pointer<LightManager>;
 typedef MaterialRef = ffi.Pointer<Material>;
 typedef MaterialInstanceRef = ffi.Pointer<MaterialInstance>;
 typedef ParameterRef = ffi.Pointer<Parameter>;
+typedef TextureSamplerRef = ffi.Pointer<TextureSampler>;
 typedef NativeSurfaceRef = ffi.Pointer<NativeSurface>;
 
 /// RenderTarget

@@ -159,7 +159,7 @@ class Renderer implements Disposable {
   void copyFrame(
       SwapChain dest, Viewport dstViewport, Viewport srcViewport, int flags) {
     native.instance.filament_renderer_copy_frame(_mNativeHandle,
-        getNativeHandleFromSwapChain(dest), destViewport, srcViewport, flags);
+        getNativeHandleFromSwapChain(dest), dstViewport, srcViewport, flags);
   }
 
   void resetUserTime() {

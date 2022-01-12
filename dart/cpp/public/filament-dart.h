@@ -28,6 +28,7 @@ typedef struct Scene *SceneRef;
 typedef struct Skybox *SkyboxRef;
 typedef struct SwapChain *SwapChainRef;
 typedef struct Texture *TextureRef;
+typedef struct TextureSampler *TextureSamplerRef;
 typedef struct View *ViewRef;
 
 ///
@@ -337,7 +338,7 @@ void                filament_material_instance_set_param_rgba(MaterialInstanceRe
 void                filament_material_instance_set_param_bool_array(MaterialInstanceRef materialInstance, const char* name, int type, bool v[], int offset, int count);
 void                filament_material_instance_set_param_int_array(MaterialInstanceRef materialInstance, const char* name, int type, int v[], int offset, int count);
 void                filament_material_instance_set_param_float_array(MaterialInstanceRef materialInstance, const char* name, int type, float v[], int offset, int count);
-void                filament_material_instance_set_param_texture(MaterialInstanceRef materialInstance, const char* name, TextureRef texture, int sampler);
+void                filament_material_instance_set_param_texture(MaterialInstanceRef materialInstance, const char* name, TextureRef texture, TextureSamplerRef sampler);
 void                filament_material_instance_set_scissor(MaterialInstanceRef materialInstance, int left, int bottom, int width, int height);
 void                filament_material_instance_unset_scissor(MaterialInstanceRef materialInstance);
 void                filament_material_instance_set_polygon_offset(MaterialInstanceRef materialInstance, float scale, float constant);
@@ -369,6 +370,32 @@ typedef struct {
 
 RenderTargetRef     filament_engine_create_render_target(EngineRef engine, filament_render_target_attachment_config_t attachmentConfigs[], int attachmentConfigsCount);
 void                filament_destroy_render_target(RenderTargetRef renderTarget);
+
+
+///
+/// TextureSampler
+///
+TextureSamplerRef   filament_create_texture_sampler(int min, int mag, int wrapS, int wrapT, int wrapR);
+TextureSamplerRef   filament_create_compare_texture_sampler(int mode, int function);
+void                filament_destroy_texture_sampler(TextureSamplerRef sampler);
+
+int                 filament_texture_sampler_get_min_filter(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_min_filter(TextureSamplerRef sampler, int minFilter);
+int                 filament_texture_sampler_get_mag_filter(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_mag_filter(TextureSamplerRef sampler, int magFilter);
+int                 filament_texture_sampler_get_wrap_mode_s(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_wrap_mode_s(TextureSamplerRef sampler, int wrapMode);
+int                 filament_texture_sampler_get_wrap_mode_t(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_wrap_mode_t(TextureSamplerRef sampler, int wrapMode);
+int                 filament_texture_sampler_get_wrap_mode_r(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_wrap_mode_r(TextureSamplerRef sampler, int wrapMode);
+int                 filament_texture_sampler_get_compare_mode(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_compare_mode(TextureSamplerRef sampler, int compareMode);
+int                 filament_texture_sampler_get_compare_function(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_compare_function(TextureSamplerRef sampler, int compareFunction);
+float               filament_texture_sampler_get_ansiotropy(TextureSamplerRef sampler);
+void                filament_texture_sampler_set_ansiotropy(TextureSamplerRef sampler, float ansiotropy);
+
 
 
 
