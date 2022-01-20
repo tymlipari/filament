@@ -93,3 +93,4 @@ class Scene implements Disposable {
 }
 
 Scene createSceneFromNative(native.SceneRef handle) => Scene._(handle);
+native.SceneRef getNativeHandleForScene(Scene? scene) => scene?._mNativeHandle ?? nullptr;

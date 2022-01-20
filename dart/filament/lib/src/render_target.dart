@@ -99,3 +99,5 @@ class RenderTarget implements Disposable {
   AttachmentConfig? getAttachmentConfig(AttachmentPoint attachmentPoint) => 
     _mAttachments[attachmentPoint];
 }
+
+native.RenderTargetRef getNativeHandleForRenderTarget(RenderTarget? target) => target?._mNativeHandle ?? nullptr;

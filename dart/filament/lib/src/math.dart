@@ -4,7 +4,7 @@ class Vector2 {
   final double x;
   final double y;
 
-  Vector2(this.x, this.y);
+  const Vector2(this.x, this.y);
 }
 
 class Vector3 {
@@ -12,7 +12,7 @@ class Vector3 {
   final double y;
   final double z;
 
-  Vector3(this.x, this.y, this.z);
+  const Vector3(this.x, this.y, this.z);
 }
 
 class Vector4 {
@@ -21,7 +21,7 @@ class Vector4 {
   final double z;
   final double w;
 
-  Vector4(this.x, this.y, this.z, this.w);
+  const Vector4(this.x, this.y, this.z, this.w);
 }
 
 class Color {
@@ -30,8 +30,8 @@ class Color {
   final double b;
   final double a;
 
-  Color.rgb(this.r, this.g, this.b) : a = 1.0;
-  Color.rgba(this.r, this.g, this.b, this.a);
+  const Color.rgb(this.r, this.g, this.b) : a = 1.0;
+  const Color.rgba(this.r, this.g, this.b, this.a);
 }
 
 ///

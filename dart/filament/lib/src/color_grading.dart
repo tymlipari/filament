@@ -58,3 +58,5 @@ class ColorGrading implements Disposable {
     return ColorGrading._(handle);
   }
 }
+
+native.ColorGradingRef getNativeHandleForColorGrading(ColorGrading? grading) => grading?._mNativeHandle ?? nullptr;

@@ -3558,6 +3558,1209 @@ class NativeLibrary {
   late final _filament_texture_sampler_set_ansiotropy =
       _filament_texture_sampler_set_ansiotropyPtr
           .asFunction<void Function(TextureSamplerRef, double)>();
+
+  /// TransformManager
+  int filament_transform_manager_has_component(
+    TransformManagerRef manager,
+    int entity,
+  ) {
+    return _filament_transform_manager_has_component(
+      manager,
+      entity,
+    );
+  }
+
+  late final _filament_transform_manager_has_componentPtr = _lookup<
+          ffi.NativeFunction<bool Function(TransformManagerRef, ffi.Int32)>>(
+      'filament_transform_manager_has_component');
+  late final _filament_transform_manager_has_component =
+      _filament_transform_manager_has_componentPtr
+          .asFunction<int Function(TransformManagerRef, int)>();
+
+  int filament_transform_manager_get_instance(
+    TransformManagerRef manager,
+    int entity,
+  ) {
+    return _filament_transform_manager_get_instance(
+      manager,
+      entity,
+    );
+  }
+
+  late final _filament_transform_manager_get_instancePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(TransformManagerRef,
+              ffi.Int32)>>('filament_transform_manager_get_instance');
+  late final _filament_transform_manager_get_instance =
+      _filament_transform_manager_get_instancePtr
+          .asFunction<int Function(TransformManagerRef, int)>();
+
+  int filament_transform_manager_create(
+    TransformManagerRef manager,
+    int entity,
+  ) {
+    return _filament_transform_manager_create(
+      manager,
+      entity,
+    );
+  }
+
+  late final _filament_transform_manager_createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(TransformManagerRef,
+              ffi.Int32)>>('filament_transform_manager_create');
+  late final _filament_transform_manager_create =
+      _filament_transform_manager_createPtr
+          .asFunction<int Function(TransformManagerRef, int)>();
+
+  int filament_transform_manager_create_array(
+    TransformManagerRef manager,
+    int entity,
+    int parent,
+    ffi.Pointer<ffi.Float> localTransform,
+  ) {
+    return _filament_transform_manager_create_array(
+      manager,
+      entity,
+      parent,
+      localTransform,
+    );
+  }
+
+  late final _filament_transform_manager_create_arrayPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int32 Function(TransformManagerRef, ffi.Int32, ffi.Int32,
+                  ffi.Pointer<ffi.Float>)>>(
+      'filament_transform_manager_create_array');
+  late final _filament_transform_manager_create_array =
+      _filament_transform_manager_create_arrayPtr.asFunction<
+          int Function(
+              TransformManagerRef, int, int, ffi.Pointer<ffi.Float>)>();
+
+  int filament_transform_manager_create_array_fp64(
+    TransformManagerRef manager,
+    int entity,
+    int parent,
+    ffi.Pointer<ffi.Double> localTransform,
+  ) {
+    return _filament_transform_manager_create_array_fp64(
+      manager,
+      entity,
+      parent,
+      localTransform,
+    );
+  }
+
+  late final _filament_transform_manager_create_array_fp64Ptr = _lookup<
+          ffi.NativeFunction<
+              ffi.Int32 Function(TransformManagerRef, ffi.Int32, ffi.Int32,
+                  ffi.Pointer<ffi.Double>)>>(
+      'filament_transform_manager_create_array_fp64');
+  late final _filament_transform_manager_create_array_fp64 =
+      _filament_transform_manager_create_array_fp64Ptr.asFunction<
+          int Function(
+              TransformManagerRef, int, int, ffi.Pointer<ffi.Double>)>();
+
+  void filament_transform_manager_destroy(
+    TransformManagerRef manager,
+    int entity,
+  ) {
+    return _filament_transform_manager_destroy(
+      manager,
+      entity,
+    );
+  }
+
+  late final _filament_transform_manager_destroyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(TransformManagerRef,
+              ffi.Int32)>>('filament_transform_manager_destroy');
+  late final _filament_transform_manager_destroy =
+      _filament_transform_manager_destroyPtr
+          .asFunction<void Function(TransformManagerRef, int)>();
+
+  void filament_transform_manager_set_parent(
+    TransformManagerRef manager,
+    int i,
+    int newParent,
+  ) {
+    return _filament_transform_manager_set_parent(
+      manager,
+      i,
+      newParent,
+    );
+  }
+
+  late final _filament_transform_manager_set_parentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(TransformManagerRef, ffi.Int32,
+              ffi.Int32)>>('filament_transform_manager_set_parent');
+  late final _filament_transform_manager_set_parent =
+      _filament_transform_manager_set_parentPtr
+          .asFunction<void Function(TransformManagerRef, int, int)>();
+
+  int filament_transform_manager_get_parent(
+    TransformManagerRef manager,
+    int i,
+  ) {
+    return _filament_transform_manager_get_parent(
+      manager,
+      i,
+    );
+  }
+
+  late final _filament_transform_manager_get_parentPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(TransformManagerRef,
+              ffi.Int32)>>('filament_transform_manager_get_parent');
+  late final _filament_transform_manager_get_parent =
+      _filament_transform_manager_get_parentPtr
+          .asFunction<int Function(TransformManagerRef, int)>();
+
+  void filament_transform_manager_set_transform(
+    TransformManagerRef manager,
+    int i,
+    ffi.Pointer<ffi.Float> localTransform,
+  ) {
+    return _filament_transform_manager_set_transform(
+      manager,
+      i,
+      localTransform,
+    );
+  }
+
+  late final _filament_transform_manager_set_transformPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  TransformManagerRef, ffi.Int32, ffi.Pointer<ffi.Float>)>>(
+      'filament_transform_manager_set_transform');
+  late final _filament_transform_manager_set_transform =
+      _filament_transform_manager_set_transformPtr.asFunction<
+          void Function(TransformManagerRef, int, ffi.Pointer<ffi.Float>)>();
+
+  void filament_transform_manager_set_transform_fp64(
+    TransformManagerRef manager,
+    int i,
+    ffi.Pointer<ffi.Double> localTransform,
+  ) {
+    return _filament_transform_manager_set_transform_fp64(
+      manager,
+      i,
+      localTransform,
+    );
+  }
+
+  late final _filament_transform_manager_set_transform_fp64Ptr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  TransformManagerRef, ffi.Int32, ffi.Pointer<ffi.Double>)>>(
+      'filament_transform_manager_set_transform_fp64');
+  late final _filament_transform_manager_set_transform_fp64 =
+      _filament_transform_manager_set_transform_fp64Ptr.asFunction<
+          void Function(TransformManagerRef, int, ffi.Pointer<ffi.Double>)>();
+
+  void filament_transform_manager_get_transform(
+    TransformManagerRef manager,
+    int i,
+    ffi.Pointer<ffi.Float> outLocalTransform,
+  ) {
+    return _filament_transform_manager_get_transform(
+      manager,
+      i,
+      outLocalTransform,
+    );
+  }
+
+  late final _filament_transform_manager_get_transformPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  TransformManagerRef, ffi.Int32, ffi.Pointer<ffi.Float>)>>(
+      'filament_transform_manager_get_transform');
+  late final _filament_transform_manager_get_transform =
+      _filament_transform_manager_get_transformPtr.asFunction<
+          void Function(TransformManagerRef, int, ffi.Pointer<ffi.Float>)>();
+
+  void filament_transform_manager_get_transform_fp64(
+    TransformManagerRef manager,
+    int i,
+    ffi.Pointer<ffi.Double> outLocalTransform,
+  ) {
+    return _filament_transform_manager_get_transform_fp64(
+      manager,
+      i,
+      outLocalTransform,
+    );
+  }
+
+  late final _filament_transform_manager_get_transform_fp64Ptr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  TransformManagerRef, ffi.Int32, ffi.Pointer<ffi.Double>)>>(
+      'filament_transform_manager_get_transform_fp64');
+  late final _filament_transform_manager_get_transform_fp64 =
+      _filament_transform_manager_get_transform_fp64Ptr.asFunction<
+          void Function(TransformManagerRef, int, ffi.Pointer<ffi.Double>)>();
+
+  void filament_transform_manager_get_world_transform(
+    TransformManagerRef manager,
+    int i,
+    ffi.Pointer<ffi.Float> outWorldTransform,
+  ) {
+    return _filament_transform_manager_get_world_transform(
+      manager,
+      i,
+      outWorldTransform,
+    );
+  }
+
+  late final _filament_transform_manager_get_world_transformPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  TransformManagerRef, ffi.Int32, ffi.Pointer<ffi.Float>)>>(
+      'filament_transform_manager_get_world_transform');
+  late final _filament_transform_manager_get_world_transform =
+      _filament_transform_manager_get_world_transformPtr.asFunction<
+          void Function(TransformManagerRef, int, ffi.Pointer<ffi.Float>)>();
+
+  void filament_transform_manager_get_world_transform_fp64(
+    TransformManagerRef manager,
+    int i,
+    ffi.Pointer<ffi.Double> outWorldTransform,
+  ) {
+    return _filament_transform_manager_get_world_transform_fp64(
+      manager,
+      i,
+      outWorldTransform,
+    );
+  }
+
+  late final _filament_transform_manager_get_world_transform_fp64Ptr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  TransformManagerRef, ffi.Int32, ffi.Pointer<ffi.Double>)>>(
+      'filament_transform_manager_get_world_transform_fp64');
+  late final _filament_transform_manager_get_world_transform_fp64 =
+      _filament_transform_manager_get_world_transform_fp64Ptr.asFunction<
+          void Function(TransformManagerRef, int, ffi.Pointer<ffi.Double>)>();
+
+  void filament_transform_manager_open_local_tranform_transaction(
+    TransformManagerRef manager,
+  ) {
+    return _filament_transform_manager_open_local_tranform_transaction(
+      manager,
+    );
+  }
+
+  late final _filament_transform_manager_open_local_tranform_transactionPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(TransformManagerRef)>>(
+          'filament_transform_manager_open_local_tranform_transaction');
+  late final _filament_transform_manager_open_local_tranform_transaction =
+      _filament_transform_manager_open_local_tranform_transactionPtr
+          .asFunction<void Function(TransformManagerRef)>();
+
+  void filament_transform_manager_commit_local_transform_transaction(
+    TransformManagerRef manager,
+  ) {
+    return _filament_transform_manager_commit_local_transform_transaction(
+      manager,
+    );
+  }
+
+  late final _filament_transform_manager_commit_local_transform_transactionPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(TransformManagerRef)>>(
+          'filament_transform_manager_commit_local_transform_transaction');
+  late final _filament_transform_manager_commit_local_transform_transaction =
+      _filament_transform_manager_commit_local_transform_transactionPtr
+          .asFunction<void Function(TransformManagerRef)>();
+
+  void filament_transform_manager_set_accurate_translations_enabled(
+    TransformManagerRef manager,
+    int enabled,
+  ) {
+    return _filament_transform_manager_set_accurate_translations_enabled(
+      manager,
+      enabled,
+    );
+  }
+
+  late final _filament_transform_manager_set_accurate_translations_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(TransformManagerRef, bool)>>(
+          'filament_transform_manager_set_accurate_translations_enabled');
+  late final _filament_transform_manager_set_accurate_translations_enabled =
+      _filament_transform_manager_set_accurate_translations_enabledPtr
+          .asFunction<void Function(TransformManagerRef, int)>();
+
+  int filament_transform_manager_get_accurage_translations_enabled(
+    TransformManagerRef manager,
+  ) {
+    return _filament_transform_manager_get_accurage_translations_enabled(
+      manager,
+    );
+  }
+
+  late final _filament_transform_manager_get_accurage_translations_enabledPtr =
+      _lookup<ffi.NativeFunction<bool Function(TransformManagerRef)>>(
+          'filament_transform_manager_get_accurage_translations_enabled');
+  late final _filament_transform_manager_get_accurage_translations_enabled =
+      _filament_transform_manager_get_accurage_translations_enabledPtr
+          .asFunction<int Function(TransformManagerRef)>();
+
+  /// View
+  ffi.Pointer<ffi.Int8> filament_view_get_name(
+    ViewRef view,
+  ) {
+    return _filament_view_get_name(
+      view,
+    );
+  }
+
+  late final _filament_view_get_namePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int8> Function(ViewRef)>>(
+          'filament_view_get_name');
+  late final _filament_view_get_name = _filament_view_get_namePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ViewRef)>();
+
+  void filament_view_set_name(
+    ViewRef view,
+    ffi.Pointer<ffi.Int8> name,
+  ) {
+    return _filament_view_set_name(
+      view,
+      name,
+    );
+  }
+
+  late final _filament_view_set_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef, ffi.Pointer<ffi.Int8>)>>('filament_view_set_name');
+  late final _filament_view_set_name = _filament_view_set_namePtr
+      .asFunction<void Function(ViewRef, ffi.Pointer<ffi.Int8>)>();
+
+  void filament_view_set_scene(
+    ViewRef view,
+    SceneRef scene,
+  ) {
+    return _filament_view_set_scene(
+      view,
+      scene,
+    );
+  }
+
+  late final _filament_view_set_scenePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, SceneRef)>>(
+          'filament_view_set_scene');
+  late final _filament_view_set_scene = _filament_view_set_scenePtr
+      .asFunction<void Function(ViewRef, SceneRef)>();
+
+  void filament_view_set_camera(
+    ViewRef view,
+    CameraRef camera,
+  ) {
+    return _filament_view_set_camera(
+      view,
+      camera,
+    );
+  }
+
+  late final _filament_view_set_cameraPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, CameraRef)>>(
+          'filament_view_set_camera');
+  late final _filament_view_set_camera = _filament_view_set_cameraPtr
+      .asFunction<void Function(ViewRef, CameraRef)>();
+
+  void filament_view_set_viewport(
+    ViewRef view,
+    int left,
+    int bottom,
+    int width,
+    int height,
+  ) {
+    return _filament_view_set_viewport(
+      view,
+      left,
+      bottom,
+      width,
+      height,
+    );
+  }
+
+  late final _filament_view_set_viewportPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ViewRef, ffi.Int32, ffi.Int32, ffi.Int32,
+              ffi.Int32)>>('filament_view_set_viewport');
+  late final _filament_view_set_viewport = _filament_view_set_viewportPtr
+      .asFunction<void Function(ViewRef, int, int, int, int)>();
+
+  void filament_view_set_blendmode(
+    ViewRef view,
+    int blendMode,
+  ) {
+    return _filament_view_set_blendmode(
+      view,
+      blendMode,
+    );
+  }
+
+  late final _filament_view_set_blendmodePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Int32)>>(
+          'filament_view_set_blendmode');
+  late final _filament_view_set_blendmode =
+      _filament_view_set_blendmodePtr.asFunction<void Function(ViewRef, int)>();
+
+  void filament_view_set_visible_layers(
+    ViewRef view,
+    int select,
+    int values,
+  ) {
+    return _filament_view_set_visible_layers(
+      view,
+      select,
+      values,
+    );
+  }
+
+  late final _filament_view_set_visible_layersPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Uint8, ffi.Uint8)>>(
+      'filament_view_set_visible_layers');
+  late final _filament_view_set_visible_layers =
+      _filament_view_set_visible_layersPtr
+          .asFunction<void Function(ViewRef, int, int)>();
+
+  void filament_view_set_shadowing_enabled(
+    ViewRef view,
+    int enabled,
+  ) {
+    return _filament_view_set_shadowing_enabled(
+      view,
+      enabled,
+    );
+  }
+
+  late final _filament_view_set_shadowing_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, bool)>>(
+          'filament_view_set_shadowing_enabled');
+  late final _filament_view_set_shadowing_enabled =
+      _filament_view_set_shadowing_enabledPtr
+          .asFunction<void Function(ViewRef, int)>();
+
+  int filament_view_get_shadowing_enabled(
+    ViewRef view,
+  ) {
+    return _filament_view_get_shadowing_enabled(
+      view,
+    );
+  }
+
+  late final _filament_view_get_shadowing_enabledPtr =
+      _lookup<ffi.NativeFunction<bool Function(ViewRef)>>(
+          'filament_view_get_shadowing_enabled');
+  late final _filament_view_get_shadowing_enabled =
+      _filament_view_get_shadowing_enabledPtr
+          .asFunction<int Function(ViewRef)>();
+
+  void filament_view_set_screenspace_refraction_enabled(
+    ViewRef view,
+    int enabled,
+  ) {
+    return _filament_view_set_screenspace_refraction_enabled(
+      view,
+      enabled,
+    );
+  }
+
+  late final _filament_view_set_screenspace_refraction_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, bool)>>(
+          'filament_view_set_screenspace_refraction_enabled');
+  late final _filament_view_set_screenspace_refraction_enabled =
+      _filament_view_set_screenspace_refraction_enabledPtr
+          .asFunction<void Function(ViewRef, int)>();
+
+  int filament_view_get_screenspace_refraction_enabled(
+    ViewRef view,
+  ) {
+    return _filament_view_get_screenspace_refraction_enabled(
+      view,
+    );
+  }
+
+  late final _filament_view_get_screenspace_refraction_enabledPtr =
+      _lookup<ffi.NativeFunction<bool Function(ViewRef)>>(
+          'filament_view_get_screenspace_refraction_enabled');
+  late final _filament_view_get_screenspace_refraction_enabled =
+      _filament_view_get_screenspace_refraction_enabledPtr
+          .asFunction<int Function(ViewRef)>();
+
+  void filament_view_set_render_target(
+    ViewRef view,
+    RenderTargetRef renderTarget,
+  ) {
+    return _filament_view_set_render_target(
+      view,
+      renderTarget,
+    );
+  }
+
+  late final _filament_view_set_render_targetPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, RenderTargetRef)>>(
+          'filament_view_set_render_target');
+  late final _filament_view_set_render_target =
+      _filament_view_set_render_targetPtr
+          .asFunction<void Function(ViewRef, RenderTargetRef)>();
+
+  void filament_view_set_antialiasing(
+    ViewRef view,
+    int type,
+  ) {
+    return _filament_view_set_antialiasing(
+      view,
+      type,
+    );
+  }
+
+  late final _filament_view_set_antialiasingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Int32)>>(
+          'filament_view_set_antialiasing');
+  late final _filament_view_set_antialiasing =
+      _filament_view_set_antialiasingPtr
+          .asFunction<void Function(ViewRef, int)>();
+
+  int filament_view_get_antialiasing(
+    ViewRef view,
+  ) {
+    return _filament_view_get_antialiasing(
+      view,
+    );
+  }
+
+  late final _filament_view_get_antialiasingPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(ViewRef)>>(
+          'filament_view_get_antialiasing');
+  late final _filament_view_get_antialiasing =
+      _filament_view_get_antialiasingPtr.asFunction<int Function(ViewRef)>();
+
+  void filament_view_set_msaa_options(
+    ViewRef view,
+    int enabled,
+    int sampleCount,
+    int customResolve,
+  ) {
+    return _filament_view_set_msaa_options(
+      view,
+      enabled,
+      sampleCount,
+      customResolve,
+    );
+  }
+
+  late final _filament_view_set_msaa_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ViewRef, bool, ffi.Int32,
+              bool)>>('filament_view_set_msaa_options');
+  late final _filament_view_set_msaa_options =
+      _filament_view_set_msaa_optionsPtr
+          .asFunction<void Function(ViewRef, int, int, int)>();
+
+  void filament_view_set_taa_options(
+    ViewRef view,
+    double feedback,
+    double filterWidth,
+    int enabled,
+  ) {
+    return _filament_view_set_taa_options(
+      view,
+      feedback,
+      filterWidth,
+      enabled,
+    );
+  }
+
+  late final _filament_view_set_taa_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ViewRef, ffi.Float, ffi.Float,
+              bool)>>('filament_view_set_taa_options');
+  late final _filament_view_set_taa_options = _filament_view_set_taa_optionsPtr
+      .asFunction<void Function(ViewRef, double, double, int)>();
+
+  void filament_view_set_color_grading(
+    ViewRef view,
+    ColorGradingRef colorGrading,
+  ) {
+    return _filament_view_set_color_grading(
+      view,
+      colorGrading,
+    );
+  }
+
+  late final _filament_view_set_color_gradingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, ColorGradingRef)>>(
+          'filament_view_set_color_grading');
+  late final _filament_view_set_color_grading =
+      _filament_view_set_color_gradingPtr
+          .asFunction<void Function(ViewRef, ColorGradingRef)>();
+
+  void filament_view_set_dithering(
+    ViewRef view,
+    int dithering,
+  ) {
+    return _filament_view_set_dithering(
+      view,
+      dithering,
+    );
+  }
+
+  late final _filament_view_set_ditheringPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Int32)>>(
+          'filament_view_set_dithering');
+  late final _filament_view_set_dithering =
+      _filament_view_set_ditheringPtr.asFunction<void Function(ViewRef, int)>();
+
+  int filament_view_get_dithering(
+    ViewRef view,
+  ) {
+    return _filament_view_get_dithering(
+      view,
+    );
+  }
+
+  late final _filament_view_get_ditheringPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(ViewRef)>>(
+          'filament_view_get_dithering');
+  late final _filament_view_get_dithering =
+      _filament_view_get_ditheringPtr.asFunction<int Function(ViewRef)>();
+
+  void filament_view_set_dynamic_resolution_options(
+    ViewRef view,
+    int enabled,
+    int homogenousScaling,
+    double minScale,
+    double maxScale,
+    double sharpness,
+    int quality,
+  ) {
+    return _filament_view_set_dynamic_resolution_options(
+      view,
+      enabled,
+      homogenousScaling,
+      minScale,
+      maxScale,
+      sharpness,
+      quality,
+    );
+  }
+
+  late final _filament_view_set_dynamic_resolution_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              bool,
+              bool,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Int32)>>('filament_view_set_dynamic_resolution_options');
+  late final _filament_view_set_dynamic_resolution_options =
+      _filament_view_set_dynamic_resolution_optionsPtr.asFunction<
+          void Function(ViewRef, int, int, double, double, double, int)>();
+
+  void filament_view_set_render_quality(
+    ViewRef view,
+    int hdrColorBufferQuality,
+  ) {
+    return _filament_view_set_render_quality(
+      view,
+      hdrColorBufferQuality,
+    );
+  }
+
+  late final _filament_view_set_render_qualityPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Int32)>>(
+          'filament_view_set_render_quality');
+  late final _filament_view_set_render_quality =
+      _filament_view_set_render_qualityPtr
+          .asFunction<void Function(ViewRef, int)>();
+
+  void filament_view_set_post_processing_enabled(
+    ViewRef view,
+    int enabled,
+  ) {
+    return _filament_view_set_post_processing_enabled(
+      view,
+      enabled,
+    );
+  }
+
+  late final _filament_view_set_post_processing_enabledPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, bool)>>(
+          'filament_view_set_post_processing_enabled');
+  late final _filament_view_set_post_processing_enabled =
+      _filament_view_set_post_processing_enabledPtr
+          .asFunction<void Function(ViewRef, int)>();
+
+  int filament_view_get_post_processing_enabled(
+    ViewRef view,
+  ) {
+    return _filament_view_get_post_processing_enabled(
+      view,
+    );
+  }
+
+  late final _filament_view_get_post_processing_enabledPtr =
+      _lookup<ffi.NativeFunction<bool Function(ViewRef)>>(
+          'filament_view_get_post_processing_enabled');
+  late final _filament_view_get_post_processing_enabled =
+      _filament_view_get_post_processing_enabledPtr
+          .asFunction<int Function(ViewRef)>();
+
+  void filament_view_set_front_face_winding_inverted(
+    ViewRef view,
+    int inverted,
+  ) {
+    return _filament_view_set_front_face_winding_inverted(
+      view,
+      inverted,
+    );
+  }
+
+  late final _filament_view_set_front_face_winding_invertedPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, bool)>>(
+          'filament_view_set_front_face_winding_inverted');
+  late final _filament_view_set_front_face_winding_inverted =
+      _filament_view_set_front_face_winding_invertedPtr
+          .asFunction<void Function(ViewRef, int)>();
+
+  int filament_view_get_front_face_winding_inverted(
+    ViewRef view,
+  ) {
+    return _filament_view_get_front_face_winding_inverted(
+      view,
+    );
+  }
+
+  late final _filament_view_get_front_face_winding_invertedPtr =
+      _lookup<ffi.NativeFunction<bool Function(ViewRef)>>(
+          'filament_view_get_front_face_winding_inverted');
+  late final _filament_view_get_front_face_winding_inverted =
+      _filament_view_get_front_face_winding_invertedPtr
+          .asFunction<int Function(ViewRef)>();
+
+  void filament_view_set_dynamic_lighting_options(
+    ViewRef view,
+    double zLightNear,
+    double zLightFar,
+  ) {
+    return _filament_view_set_dynamic_lighting_options(
+      view,
+      zLightNear,
+      zLightFar,
+    );
+  }
+
+  late final _filament_view_set_dynamic_lighting_optionsPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Float, ffi.Float)>>(
+      'filament_view_set_dynamic_lighting_options');
+  late final _filament_view_set_dynamic_lighting_options =
+      _filament_view_set_dynamic_lighting_optionsPtr
+          .asFunction<void Function(ViewRef, double, double)>();
+
+  void filament_view_set_shadow_type(
+    ViewRef view,
+    int shadowType,
+  ) {
+    return _filament_view_set_shadow_type(
+      view,
+      shadowType,
+    );
+  }
+
+  late final _filament_view_set_shadow_typePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Int32)>>(
+          'filament_view_set_shadow_type');
+  late final _filament_view_set_shadow_type = _filament_view_set_shadow_typePtr
+      .asFunction<void Function(ViewRef, int)>();
+
+  void filament_view_set_vsm_shadow_options(
+    ViewRef view,
+    int ansiotropy,
+    int mipmapping,
+    double minVarianceScale,
+    double lightBleedReduction,
+  ) {
+    return _filament_view_set_vsm_shadow_options(
+      view,
+      ansiotropy,
+      mipmapping,
+      minVarianceScale,
+      lightBleedReduction,
+    );
+  }
+
+  late final _filament_view_set_vsm_shadow_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ViewRef, ffi.Int32, bool, ffi.Float,
+              ffi.Float)>>('filament_view_set_vsm_shadow_options');
+  late final _filament_view_set_vsm_shadow_options =
+      _filament_view_set_vsm_shadow_optionsPtr
+          .asFunction<void Function(ViewRef, int, int, double, double)>();
+
+  void filament_view_set_soft_shadow_options(
+    ViewRef view,
+    double penumbraScale,
+    double penumbraRatioScale,
+  ) {
+    return _filament_view_set_soft_shadow_options(
+      view,
+      penumbraScale,
+      penumbraRatioScale,
+    );
+  }
+
+  late final _filament_view_set_soft_shadow_optionsPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ViewRef, ffi.Float, ffi.Float)>>(
+      'filament_view_set_soft_shadow_options');
+  late final _filament_view_set_soft_shadow_options =
+      _filament_view_set_soft_shadow_optionsPtr
+          .asFunction<void Function(ViewRef, double, double)>();
+
+  void filament_view_set_ambient_occlusion_options(
+    ViewRef view,
+    double radius,
+    double bias,
+    double power,
+    double resolution,
+    double intensity,
+    double bilateralThreshold,
+    int quality,
+    int lowPassFilter,
+    int upsampling,
+    int enabled,
+    int bentNormals,
+    double minHorizonAngleRad,
+  ) {
+    return _filament_view_set_ambient_occlusion_options(
+      view,
+      radius,
+      bias,
+      power,
+      resolution,
+      intensity,
+      bilateralThreshold,
+      quality,
+      lowPassFilter,
+      upsampling,
+      enabled,
+      bentNormals,
+      minHorizonAngleRad,
+    );
+  }
+
+  late final _filament_view_set_ambient_occlusion_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int32,
+              bool,
+              bool,
+              ffi.Float)>>('filament_view_set_ambient_occlusion_options');
+  late final _filament_view_set_ambient_occlusion_options =
+      _filament_view_set_ambient_occlusion_optionsPtr.asFunction<
+          void Function(ViewRef, double, double, double, double, double, double,
+              int, int, int, int, int, double)>();
+
+  void filament_view_set_ssct_options(
+    ViewRef view,
+    double ssctLightConeRad,
+    double ssctStartTraceDistance,
+    double ssctContactDistanceMax,
+    double ssctIntensity,
+    double v,
+    double v1,
+    double v2,
+    double ssctDepthBias,
+    double ssctDepthSlopeBias,
+    int ssctSampleCount,
+    int ssctRayCount,
+    int ssctEnabled,
+  ) {
+    return _filament_view_set_ssct_options(
+      view,
+      ssctLightConeRad,
+      ssctStartTraceDistance,
+      ssctContactDistanceMax,
+      ssctIntensity,
+      v,
+      v1,
+      v2,
+      ssctDepthBias,
+      ssctDepthSlopeBias,
+      ssctSampleCount,
+      ssctRayCount,
+      ssctEnabled,
+    );
+  }
+
+  late final _filament_view_set_ssct_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Int32,
+              ffi.Int32,
+              bool)>>('filament_view_set_ssct_options');
+  late final _filament_view_set_ssct_options =
+      _filament_view_set_ssct_optionsPtr.asFunction<
+          void Function(ViewRef, double, double, double, double, double, double,
+              double, double, double, int, int, int)>();
+
+  void filament_view_set_bloom_options(
+    ViewRef view,
+    TextureRef dirtTexture,
+    double dirtStrength,
+    double strength,
+    int resolution,
+    double anamorphism,
+    int levels,
+    int blendMode,
+    int threshold,
+    int enabled,
+    double highlight,
+    int lensFlare,
+    int starburst,
+    double chromaticAberration,
+    int ghostCount,
+    double ghostSpacing,
+    double ghostThreshold,
+    double haloThickness,
+    double haloRadius,
+    double haloThreshold,
+  ) {
+    return _filament_view_set_bloom_options(
+      view,
+      dirtTexture,
+      dirtStrength,
+      strength,
+      resolution,
+      anamorphism,
+      levels,
+      blendMode,
+      threshold,
+      enabled,
+      highlight,
+      lensFlare,
+      starburst,
+      chromaticAberration,
+      ghostCount,
+      ghostSpacing,
+      ghostThreshold,
+      haloThickness,
+      haloRadius,
+      haloThreshold,
+    );
+  }
+
+  late final _filament_view_set_bloom_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              TextureRef,
+              ffi.Float,
+              ffi.Float,
+              ffi.Int32,
+              ffi.Float,
+              ffi.Int32,
+              ffi.Int32,
+              bool,
+              bool,
+              ffi.Float,
+              bool,
+              bool,
+              ffi.Float,
+              ffi.Int32,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float)>>('filament_view_set_bloom_options');
+  late final _filament_view_set_bloom_options =
+      _filament_view_set_bloom_optionsPtr.asFunction<
+          void Function(
+              ViewRef,
+              TextureRef,
+              double,
+              double,
+              int,
+              double,
+              int,
+              int,
+              int,
+              int,
+              double,
+              int,
+              int,
+              double,
+              int,
+              double,
+              double,
+              double,
+              double,
+              double)>();
+
+  void filament_view_set_vignette_options(
+    ViewRef view,
+    double midPoint,
+    double roundness,
+    double feather,
+    double r,
+    double g,
+    double b,
+    double a,
+    int enabled,
+  ) {
+    return _filament_view_set_vignette_options(
+      view,
+      midPoint,
+      roundness,
+      feather,
+      r,
+      g,
+      b,
+      a,
+      enabled,
+    );
+  }
+
+  late final _filament_view_set_vignette_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              bool)>>('filament_view_set_vignette_options');
+  late final _filament_view_set_vignette_options =
+      _filament_view_set_vignette_optionsPtr.asFunction<
+          void Function(ViewRef, double, double, double, double, double, double,
+              double, int)>();
+
+  void filament_view_set_fog_options(
+    ViewRef view,
+    double distance,
+    double maximumOpacity,
+    double height,
+    double heightFalloff,
+    double v,
+    double v1,
+    double v2,
+    double density,
+    double inScatteringStart,
+    double inScatteringSize,
+    int fogColorFromIbl,
+    int enabled,
+  ) {
+    return _filament_view_set_fog_options(
+      view,
+      distance,
+      maximumOpacity,
+      height,
+      heightFalloff,
+      v,
+      v1,
+      v2,
+      density,
+      inScatteringStart,
+      inScatteringSize,
+      fogColorFromIbl,
+      enabled,
+    );
+  }
+
+  late final _filament_view_set_fog_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              ffi.Float,
+              bool,
+              bool)>>('filament_view_set_fog_options');
+  late final _filament_view_set_fog_options =
+      _filament_view_set_fog_optionsPtr.asFunction<
+          void Function(ViewRef, double, double, double, double, double, double,
+              double, double, double, double, int, int)>();
+
+  void filament_view_set_depth_of_field_options(
+    ViewRef view,
+    double cocScale,
+    double maxApertureDiameter,
+    int enabled,
+    int filter,
+    int nativeResolution,
+    int foregroundRingCount,
+    int backgroundRingCount,
+    int fastGatherRingCount,
+    int maxForegroundCOC,
+    int maxBackgroundCOC,
+  ) {
+    return _filament_view_set_depth_of_field_options(
+      view,
+      cocScale,
+      maxApertureDiameter,
+      enabled,
+      filter,
+      nativeResolution,
+      foregroundRingCount,
+      backgroundRingCount,
+      fastGatherRingCount,
+      maxForegroundCOC,
+      maxBackgroundCOC,
+    );
+  }
+
+  late final _filament_view_set_depth_of_field_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ViewRef,
+              ffi.Float,
+              ffi.Float,
+              bool,
+              ffi.Int32,
+              bool,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int32)>>('filament_view_set_depth_of_field_options');
+  late final _filament_view_set_depth_of_field_options =
+      _filament_view_set_depth_of_field_optionsPtr.asFunction<
+          void Function(ViewRef, double, double, int, int, int, int, int, int,
+              int, int)>();
 }
 
 class BufferObjectBuilder extends ffi.Opaque {}
@@ -3601,6 +4804,8 @@ class SwapChain extends ffi.Opaque {}
 class Texture extends ffi.Opaque {}
 
 class TextureSampler extends ffi.Opaque {}
+
+class TransformManager extends ffi.Opaque {}
 
 class View extends ffi.Opaque {}
 
@@ -3727,3 +4932,4 @@ class filament_render_target_attachment_config_t extends ffi.Struct {
 }
 
 typedef RenderTargetRef = ffi.Pointer<RenderTarget>;
+typedef TransformManagerRef = ffi.Pointer<TransformManager>;

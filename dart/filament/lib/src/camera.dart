@@ -145,3 +145,5 @@ class Camera implements Disposable {
 
 Camera createCameraFromNative(native.CameraRef handle, int entity) =>
     Camera._(handle, entity);
+
+native.CameraRef getNativeHandleForCamera(Camera? object) => object?._mNativeHandle ?? nullptr;

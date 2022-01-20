@@ -29,6 +29,7 @@ typedef struct Skybox *SkyboxRef;
 typedef struct SwapChain *SwapChainRef;
 typedef struct Texture *TextureRef;
 typedef struct TextureSampler *TextureSamplerRef;
+typedef struct TransformManager *TransformManagerRef;
 typedef struct View *ViewRef;
 
 ///
@@ -396,7 +397,69 @@ void                filament_texture_sampler_set_compare_function(TextureSampler
 float               filament_texture_sampler_get_ansiotropy(TextureSamplerRef sampler);
 void                filament_texture_sampler_set_ansiotropy(TextureSamplerRef sampler, float ansiotropy);
 
+///
+/// TransformManager
+///
+bool                filament_transform_manager_has_component(TransformManagerRef manager, int entity);
+int                 filament_transform_manager_get_instance(TransformManagerRef manager, int entity);
+int                 filament_transform_manager_create(TransformManagerRef manager, int entity);
+int                 filament_transform_manager_create_array(TransformManagerRef manager, int entity, int parent, float localTransform[]);
+int                 filament_transform_manager_create_array_fp64(TransformManagerRef manager, int entity, int parent, double localTransform[]);
+void                filament_transform_manager_destroy(TransformManagerRef manager, int entity);
+void                filament_transform_manager_set_parent(TransformManagerRef manager, int i, int newParent);
+int                 filament_transform_manager_get_parent(TransformManagerRef manager, int i);
+void                filament_transform_manager_set_transform(TransformManagerRef manager, int i, float localTransform[]);
+void                filament_transform_manager_set_transform_fp64(TransformManagerRef manager, int i, double localTransform[]);
+void                filament_transform_manager_get_transform(TransformManagerRef manager, int i, float outLocalTransform[]);
+void                filament_transform_manager_get_transform_fp64(TransformManagerRef manager, int i, double outLocalTransform[]);
+void                filament_transform_manager_get_world_transform(TransformManagerRef manager, int i, float outWorldTransform[]);
+void                filament_transform_manager_get_world_transform_fp64(TransformManagerRef manager, int i, double outWorldTransform[]);
+void                filament_transform_manager_open_local_tranform_transaction(TransformManagerRef manager);
+void                filament_transform_manager_commit_local_transform_transaction(TransformManagerRef manager);
+void                filament_transform_manager_set_accurate_translations_enabled(TransformManagerRef manager, bool enabled);
+bool                filament_transform_manager_get_accurage_translations_enabled(TransformManagerRef manager);
 
+
+///
+/// View
+///
+const char*         filament_view_get_name(ViewRef view);
+void                filament_view_set_name(ViewRef view, const char* name);
+void                filament_view_set_scene(ViewRef view, SceneRef scene);
+void                filament_view_set_camera(ViewRef view, CameraRef camera);
+void                filament_view_set_viewport(ViewRef view, int left, int bottom, int width, int height);
+void                filament_view_set_blendmode(ViewRef view, int blendMode);
+void                filament_view_set_visible_layers(ViewRef view, unsigned char select, unsigned char values);
+void                filament_view_set_shadowing_enabled(ViewRef view, bool enabled);
+bool                filament_view_get_shadowing_enabled(ViewRef view);
+void                filament_view_set_screenspace_refraction_enabled(ViewRef view, bool enabled);
+bool                filament_view_get_screenspace_refraction_enabled(ViewRef view);
+void                filament_view_set_render_target(ViewRef view, RenderTargetRef renderTarget);
+void                filament_view_set_antialiasing(ViewRef view, int type);
+int                 filament_view_get_antialiasing(ViewRef view);
+void                filament_view_set_msaa_options(ViewRef view, bool enabled, int sampleCount, bool customResolve);
+void                filament_view_set_taa_options(ViewRef view, float feedback, float filterWidth, bool enabled);
+void                filament_view_set_color_grading(ViewRef view, ColorGradingRef colorGrading);
+void                filament_view_set_dithering(ViewRef view, int dithering);
+int                 filament_view_get_dithering(ViewRef view);
+void                filament_view_set_dynamic_resolution_options(ViewRef view, bool enabled, bool homogenousScaling, float minScale, float maxScale, float sharpness, int quality);
+void                filament_view_set_render_quality(ViewRef view, int hdrColorBufferQuality);
+void                filament_view_set_post_processing_enabled(ViewRef view, bool enabled);
+bool                filament_view_get_post_processing_enabled(ViewRef view);
+void                filament_view_set_front_face_winding_inverted(ViewRef view, bool inverted);
+bool                filament_view_get_front_face_winding_inverted(ViewRef view);
+void                filament_view_set_dynamic_lighting_options(ViewRef view, float zLightNear, float zLightFar);
+void                filament_view_set_shadow_type(ViewRef view, int shadowType);
+void                filament_view_set_vsm_shadow_options(ViewRef view, int ansiotropy, bool mipmapping, float minVarianceScale, float lightBleedReduction);
+void                filament_view_set_soft_shadow_options(ViewRef view, float penumbraScale, float penumbraRatioScale);
+void                filament_view_set_ambient_occlusion_options(ViewRef view, float radius, float bias, float power, float resolution, float intensity, float bilateralThreshold, int quality, int lowPassFilter, int upsampling, bool enabled, bool bentNormals, float minHorizonAngleRad);
+void                filament_view_set_ssct_options(ViewRef view, float ssctLightConeRad, float ssctStartTraceDistance, float ssctContactDistanceMax, float ssctIntensity, float v, float v1, float v2, float ssctDepthBias, float ssctDepthSlopeBias, int ssctSampleCount, int ssctRayCount, bool ssctEnabled);
+void                filament_view_set_bloom_options(ViewRef view, TextureRef dirtTexture, float dirtStrength, float strength, int resolution, float anamorphism, int levels, int blendMode, bool threshold, bool enabled, float highlight,
+                        bool lensFlare, bool starburst, float chromaticAberration, int ghostCount, float ghostSpacing, float ghostThreshold, float haloThickness, float haloRadius, float haloThreshold);
+void                filament_view_set_vignette_options(ViewRef view, float midPoint, float roundness, float feather, float r, float g, float b, float a, bool enabled);
+void                filament_view_set_fog_options(ViewRef view, float distance, float maximumOpacity, float height, float heightFalloff, float v, float v1, float v2, float density, float inScatteringStart, float inScatteringSize, bool fogColorFromIbl, bool enabled);
+void                filament_view_set_depth_of_field_options(ViewRef view, float cocScale, float maxApertureDiameter, bool enabled, int filter, 
+                        bool nativeResolution, int foregroundRingCount, int backgroundRingCount, int fastGatherRingCount, int maxForegroundCOC, int maxBackgroundCOC);
 
 
 #ifdef __cplusplus

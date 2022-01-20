@@ -86,3 +86,11 @@ class NativeObjectFactory {
     _mObjectCache.remove(handle);
   }
 }
+
+extension BoolNativeConversion on bool {
+  int get nativeValue => this == true ? 1 : 0;
+}
+
+extension IntNativeConversion on int {
+  bool get asBool => (this != 0);
+}
