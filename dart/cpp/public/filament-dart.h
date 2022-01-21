@@ -11,6 +11,7 @@ typedef unsigned char bool;
 typedef struct BufferObjectBuilder *BufferObjectBuilderRef;
 typedef struct BufferObject *BufferObjectRef;
 typedef struct Camera *CameraRef;
+typedef struct ColorGradingBuilder *ColorGradingBuilderRef;
 typedef struct ColorGrading *ColorGradingRef;
 typedef struct Engine *EngineRef;
 typedef struct EntityManager *EntityManagerRef;
@@ -29,6 +30,7 @@ typedef struct Skybox *SkyboxRef;
 typedef struct SwapChain *SwapChainRef;
 typedef struct Texture *TextureRef;
 typedef struct TextureSampler *TextureSamplerRef;
+typedef struct ToneMapper *ToneMapperRef;
 typedef struct TransformManager *TransformManagerRef;
 typedef struct View *ViewRef;
 
@@ -210,6 +212,29 @@ int filament_fence_wait(FenceRef fence, int mode, long long timeoutMS);
 BufferObjectBuilderRef filament_create_buffer_builder();
 
 BufferObjectRef filament_engine_create_buffer_object(EngineRef engine, int byteCount, int bindingType);
+
+
+///
+/// ColorGrading
+///
+ColorGradingBuilderRef  filament_create_ColorGradingBuilder();
+void                    filament_ColorGradingBuilder_set_quality(ColorGradingBuilderRef builder, int qualityLevel);
+void                    filament_ColorGradingBuilder_set_toneMapper(ColorGradingBuilderRef builder, ToneMapperRef toneMapper);
+void                    filament_ColorGradingBuilder_set_luminanceScaling(ColorGradingBuilderRef builder, bool luminanceScaling);
+void                    filament_ColorGradingBuilder_set_gamutMapping(ColorGradingBuilderRef buidler, bool gamutMapping);
+void                    filament_ColorGradingBuilder_set_nightAdaptation(ColorGradingBuilderRef builder, float adaptation);
+void                    filament_ColorGradingBuilder_set_exposure(ColorGradingBuilderRef builder, float exposure);
+void                    filament_ColorGradingBuilder_set_whiteBalance(ColorGradingBuilderRef builder, float temperature, float tint);
+void                    filament_ColorGradingBuilder_set_channelMixer(ColorGradingBuilderRef builder, Vector3 outRed, Vector3 outGreen, Vector3 outBlue);
+void                    filament_ColorGradingBuilder_set_shadowsMidtonesHighlights(ColorGradingBuilderRef builder, Vector4 shadows, Vector4 midtones, Vector4 highlights, Vector4 ranges);
+void                    filament_ColorGradingBuilder_set_slopeOffsetPower(ColorGradingBuilderRef builder, Vector3 slope, Vector3 offset, Vector3 power);
+void                    filament_ColorGradingBuilder_set_contrast(ColorGradingBuilderRef builder, float contrast);
+void                    filament_ColorGradingBuilder_set_vibrance(ColorGradingBuilderRef builder, float vibrance);
+void                    filament_ColorGradingBuilder_set_saturation(ColorGradingBuilderRef builder, float saturation);
+void                    filament_ColorGradingBuilder_set_curves(ColorGradingBuilderRef builder, Vector3 shadowGamma, Vector3 midPoint, Vector3 highlightScale);
+ColorGradingRef         filament_ColorGradingBuilder_build(ColorGradingBuilderRef builder, EngineRef engine);
+
+
 
 ColorGradingRef filament_engine_create_color_grading(EngineRef engine);
 void filament_destroy_color_grading(ColorGradingRef colorGrading);
@@ -461,6 +486,25 @@ void                filament_view_set_fog_options(ViewRef view, float distance, 
 void                filament_view_set_depth_of_field_options(ViewRef view, float cocScale, float maxApertureDiameter, bool enabled, int filter, 
                         bool nativeResolution, int foregroundRingCount, int backgroundRingCount, int fastGatherRingCount, int maxForegroundCOC, int maxBackgroundCOC);
 
+///
+/// ToneMapper
+///
+ToneMapperRef       filament_create_LinearToneMapper();
+ToneMapperRef       filament_create_ACESToneMapper();
+ToneMapperRef       filament_create_ACESLegacyToneMapper();
+ToneMapperRef       filament_create_FilmicToneMapper();
+ToneMapperRef       filament_create_GenericToneMapper();
+
+float               filament_GenericToneMapper_get_contrast(ToneMapperRef toneMapper);
+void                filament_GenericToneMapper_set_contrast(ToneMapperRef toneMapper, float contrast);
+float               filament_GenericToneMapper_get_shoulder(ToneMapperRef toneMapper);
+void                filament_GenericToneMapper_set_shoulder(ToneMapperRef toneMapper, float shoulder);
+float               filament_GenericToneMapper_get_midGrayIn(ToneMapperRef toneMapper);
+void                filament_GenericToneMapper_set_midGrayIn(ToneMapperRef toneMapper, float midGrayIn);
+float               filament_GenericToneMapper_get_midGrayOut(ToneMapperRef toneMapper);
+void                filament_GenericToneMapper_set_midGrayOut(ToneMapperRef toneMapper, float midGrayOut);
+float               filament_GenericToneMapper_get_hdrMax(ToneMapperRef toneMapper);
+void                filament_GenericToneMapper_set_hdrMax(ToneMapperRef toneMapper, float hdrMax);
 
 #ifdef __cplusplus
 }
