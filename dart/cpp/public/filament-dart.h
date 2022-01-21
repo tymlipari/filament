@@ -207,10 +207,6 @@ void filament_destroy_fence(FenceRef fence);
 
 int filament_fence_wait(FenceRef fence, int mode, long long timeoutMS);
 
-BufferObjectBuilderRef filament_create_buffer_builder();
-
-BufferObjectRef filament_engine_create_buffer_object(EngineRef engine, int byteCount, int bindingType);
-
 ColorGradingRef filament_engine_create_color_grading(EngineRef engine);
 void filament_destroy_color_grading(ColorGradingRef colorGrading);
 
@@ -461,6 +457,18 @@ void                filament_view_set_fog_options(ViewRef view, float distance, 
 void                filament_view_set_depth_of_field_options(ViewRef view, float cocScale, float maxApertureDiameter, bool enabled, int filter, 
                         bool nativeResolution, int foregroundRingCount, int backgroundRingCount, int fastGatherRingCount, int maxForegroundCOC, int maxBackgroundCOC);
 
+
+///
+/// BufferObject
+///
+BufferObjectBuilderRef  filament_create_BufferObjectBuilder();
+void                    filament_destroy_BufferObjectBuilder(BufferObjectBuilderRef builder);
+void                    filament_BufferObjectBuilder_set_size(BufferObjectBuilderRef builder, int byteCount);
+void                    filament_BufferObjectBuilder_set_bindingType(BufferObjectBuilderRef builder, int bindingType);
+BufferObjectRef         filament_BufferObjectBuilder_build(BufferObjectBuilderRef builder, EngineRef engine);
+
+int                     filament_BufferObject_get_byteCount(BufferObjectRef bufferObj);
+void                    filament_BufferObject_set_buffer(BufferObjectRef bufferObj, EngineRef engine, void* buffer, int remaining, int destOffsetInBytes, int count);
 
 #ifdef __cplusplus
 }

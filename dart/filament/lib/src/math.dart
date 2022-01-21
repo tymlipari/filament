@@ -13,6 +13,8 @@ class Vector3 {
   final double z;
 
   const Vector3(this.x, this.y, this.z);
+
+  const Vector3.zero() : this(0, 0, 0);
 }
 
 class Vector4 {
@@ -22,6 +24,8 @@ class Vector4 {
   final double w;
 
   const Vector4(this.x, this.y, this.z, this.w);
+
+  const Vector4.zero() : this(0, 0, 0, 0);
 }
 
 class Color {

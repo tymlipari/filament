@@ -1118,37 +1118,6 @@ class NativeLibrary {
   late final _filament_fence_wait =
       _filament_fence_waitPtr.asFunction<int Function(FenceRef, int, int)>();
 
-  BufferObjectBuilderRef filament_create_buffer_builder() {
-    return _filament_create_buffer_builder();
-  }
-
-  late final _filament_create_buffer_builderPtr =
-      _lookup<ffi.NativeFunction<BufferObjectBuilderRef Function()>>(
-          'filament_create_buffer_builder');
-  late final _filament_create_buffer_builder =
-      _filament_create_buffer_builderPtr
-          .asFunction<BufferObjectBuilderRef Function()>();
-
-  BufferObjectRef filament_engine_create_buffer_object(
-    EngineRef engine,
-    int byteCount,
-    int bindingType,
-  ) {
-    return _filament_engine_create_buffer_object(
-      engine,
-      byteCount,
-      bindingType,
-    );
-  }
-
-  late final _filament_engine_create_buffer_objectPtr = _lookup<
-      ffi.NativeFunction<
-          BufferObjectRef Function(EngineRef, ffi.Int32,
-              ffi.Int32)>>('filament_engine_create_buffer_object');
-  late final _filament_engine_create_buffer_object =
-      _filament_engine_create_buffer_objectPtr
-          .asFunction<BufferObjectRef Function(EngineRef, int, int)>();
-
   ColorGradingRef filament_engine_create_color_grading(
     EngineRef engine,
   ) {
@@ -4761,6 +4730,134 @@ class NativeLibrary {
       _filament_view_set_depth_of_field_optionsPtr.asFunction<
           void Function(ViewRef, double, double, int, int, int, int, int, int,
               int, int)>();
+
+  /// BufferObject
+  BufferObjectBuilderRef filament_create_BufferObjectBuilder() {
+    return _filament_create_BufferObjectBuilder();
+  }
+
+  late final _filament_create_BufferObjectBuilderPtr =
+      _lookup<ffi.NativeFunction<BufferObjectBuilderRef Function()>>(
+          'filament_create_BufferObjectBuilder');
+  late final _filament_create_BufferObjectBuilder =
+      _filament_create_BufferObjectBuilderPtr
+          .asFunction<BufferObjectBuilderRef Function()>();
+
+  void filament_destroy_BufferObjectBuilder(
+    BufferObjectBuilderRef builder,
+  ) {
+    return _filament_destroy_BufferObjectBuilder(
+      builder,
+    );
+  }
+
+  late final _filament_destroy_BufferObjectBuilderPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(BufferObjectBuilderRef)>>(
+          'filament_destroy_BufferObjectBuilder');
+  late final _filament_destroy_BufferObjectBuilder =
+      _filament_destroy_BufferObjectBuilderPtr
+          .asFunction<void Function(BufferObjectBuilderRef)>();
+
+  void filament_BufferObjectBuilder_set_size(
+    BufferObjectBuilderRef builder,
+    int byteCount,
+  ) {
+    return _filament_BufferObjectBuilder_set_size(
+      builder,
+      byteCount,
+    );
+  }
+
+  late final _filament_BufferObjectBuilder_set_sizePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(BufferObjectBuilderRef,
+              ffi.Int32)>>('filament_BufferObjectBuilder_set_size');
+  late final _filament_BufferObjectBuilder_set_size =
+      _filament_BufferObjectBuilder_set_sizePtr
+          .asFunction<void Function(BufferObjectBuilderRef, int)>();
+
+  void filament_BufferObjectBuilder_set_bindingType(
+    BufferObjectBuilderRef builder,
+    int bindingType,
+  ) {
+    return _filament_BufferObjectBuilder_set_bindingType(
+      builder,
+      bindingType,
+    );
+  }
+
+  late final _filament_BufferObjectBuilder_set_bindingTypePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(BufferObjectBuilderRef,
+              ffi.Int32)>>('filament_BufferObjectBuilder_set_bindingType');
+  late final _filament_BufferObjectBuilder_set_bindingType =
+      _filament_BufferObjectBuilder_set_bindingTypePtr
+          .asFunction<void Function(BufferObjectBuilderRef, int)>();
+
+  BufferObjectRef filament_BufferObjectBuilder_build(
+    BufferObjectBuilderRef builder,
+    EngineRef engine,
+  ) {
+    return _filament_BufferObjectBuilder_build(
+      builder,
+      engine,
+    );
+  }
+
+  late final _filament_BufferObjectBuilder_buildPtr = _lookup<
+      ffi.NativeFunction<
+          BufferObjectRef Function(BufferObjectBuilderRef,
+              EngineRef)>>('filament_BufferObjectBuilder_build');
+  late final _filament_BufferObjectBuilder_build =
+      _filament_BufferObjectBuilder_buildPtr.asFunction<
+          BufferObjectRef Function(BufferObjectBuilderRef, EngineRef)>();
+
+  int filament_BufferObject_get_byteCount(
+    BufferObjectRef bufferObj,
+  ) {
+    return _filament_BufferObject_get_byteCount(
+      bufferObj,
+    );
+  }
+
+  late final _filament_BufferObject_get_byteCountPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(BufferObjectRef)>>(
+          'filament_BufferObject_get_byteCount');
+  late final _filament_BufferObject_get_byteCount =
+      _filament_BufferObject_get_byteCountPtr
+          .asFunction<int Function(BufferObjectRef)>();
+
+  void filament_BufferObject_set_buffer(
+    BufferObjectRef bufferObj,
+    EngineRef engine,
+    ffi.Pointer<ffi.Void> buffer,
+    int remaining,
+    int destOffsetInBytes,
+    int count,
+  ) {
+    return _filament_BufferObject_set_buffer(
+      bufferObj,
+      engine,
+      buffer,
+      remaining,
+      destOffsetInBytes,
+      count,
+    );
+  }
+
+  late final _filament_BufferObject_set_bufferPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              BufferObjectRef,
+              EngineRef,
+              ffi.Pointer<ffi.Void>,
+              ffi.Int32,
+              ffi.Int32,
+              ffi.Int32)>>('filament_BufferObject_set_buffer');
+  late final _filament_BufferObject_set_buffer =
+      _filament_BufferObject_set_bufferPtr.asFunction<
+          void Function(BufferObjectRef, EngineRef, ffi.Pointer<ffi.Void>, int,
+              int, int)>();
 }
 
 class BufferObjectBuilder extends ffi.Opaque {}
@@ -4902,8 +4999,6 @@ typedef SceneRef = ffi.Pointer<Scene>;
 typedef SkyboxRef = ffi.Pointer<Skybox>;
 typedef IndirectLightRef = ffi.Pointer<IndirectLight>;
 typedef FenceRef = ffi.Pointer<Fence>;
-typedef BufferObjectBuilderRef = ffi.Pointer<BufferObjectBuilder>;
-typedef BufferObjectRef = ffi.Pointer<BufferObject>;
 typedef ColorGradingRef = ffi.Pointer<ColorGrading>;
 typedef IndexBufferRef = ffi.Pointer<IndexBuffer>;
 typedef TextureRef = ffi.Pointer<Texture>;
@@ -4933,3 +5028,5 @@ class filament_render_target_attachment_config_t extends ffi.Struct {
 
 typedef RenderTargetRef = ffi.Pointer<RenderTarget>;
 typedef TransformManagerRef = ffi.Pointer<TransformManager>;
+typedef BufferObjectBuilderRef = ffi.Pointer<BufferObjectBuilder>;
+typedef BufferObjectRef = ffi.Pointer<BufferObject>;
