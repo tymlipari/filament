@@ -50,17 +50,11 @@ typedef struct {
 } Vector4, *Vector4Ref;
 
 typedef struct {
-  union {
-    float v[9];
-    float m[3][3];
-  };
+  Vector3 rows[3];
 } Matrix3x3, *Matrix3x3Ref;
 
 typedef struct {
-  union {
-    float v[16];
-    float m[4][4];
-  };
+  Vector4 rows[4];
 } Matrix4x4, *Matrix4x4Ref;
 
 ///

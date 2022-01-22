@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'package:filament/src/disposable.dart';
 import 'package:filament/src/native.dart' as native;
+import 'math.dart';
 
 enum CameraProjection { perspective, orthographic }
 
@@ -95,9 +96,18 @@ class Camera implements Disposable {
   }
 
   void setCustomProjection(List<double> projMatrix, double near, double far) {
-    assert(projMatrix.length >= 16);
-    native.instance.filament_camera_set_projection_custom(
-        _mNativeHandle, projMatrix, projMatrix.length, near, far);
+    // Grab a native matrix struct and populate it with the projection matrix
+    var borrowedMatrix = native.NativeStructPool.borrow<native.Matrix4x4>(
+        sizeOf<native.Matrix4x4>());
+
+    try {
+      projMatrix.populateNativeMatrix4x4(borrowedMatrix.ref);
+
+      native.instance.filament_camera_set_projection_custom(
+          _mNativeHandle, borrowedMatrix.ref, near, far);
+    } finally {
+      native.NativeStructPool.returnBorrow(borrowedMatrix);
+    }
   }
 
   void setCustomProjectionWithCulling(List<double> projMatrix,
@@ -146,4 +156,5 @@ class Camera implements Disposable {
 Camera createCameraFromNative(native.CameraRef handle, int entity) =>
     Camera._(handle, entity);
 
-native.CameraRef getNativeHandleForCamera(Camera? object) => object?._mNativeHandle ?? nullptr;
+native.CameraRef getNativeHandleForCamera(Camera? object) =>
+    object?._mNativeHandle ?? nullptr;

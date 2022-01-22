@@ -582,6 +582,28 @@ class NativeLibrary {
       _filament_camera_set_projection_lensPtr.asFunction<
           void Function(CameraRef, double, double, double, double)>();
 
+  void filament_camera_set_projection_custom(
+    CameraRef camera,
+    Matrix4x4 projection,
+    double near,
+    double far,
+  ) {
+    return _filament_camera_set_projection_custom(
+      camera,
+      projection,
+      near,
+      far,
+    );
+  }
+
+  late final _filament_camera_set_projection_customPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(CameraRef, Matrix4x4, ffi.Double,
+              ffi.Double)>>('filament_camera_set_projection_custom');
+  late final _filament_camera_set_projection_custom =
+      _filament_camera_set_projection_customPtr
+          .asFunction<void Function(CameraRef, Matrix4x4, double, double)>();
+
   void filament_camera_set_scaling(
     CameraRef camera,
     double scalingX,
@@ -763,6 +785,21 @@ class NativeLibrary {
           'filament_camera_get_scaling');
   late final _filament_camera_get_scaling =
       _filament_camera_get_scalingPtr.asFunction<Vector4 Function(CameraRef)>();
+
+  Matrix4x4 filament_camera_get_model_matrix(
+    CameraRef camera,
+  ) {
+    return _filament_camera_get_model_matrix(
+      camera,
+    );
+  }
+
+  late final _filament_camera_get_model_matrixPtr =
+      _lookup<ffi.NativeFunction<Matrix4x4 Function(CameraRef)>>(
+          'filament_camera_get_model_matrix');
+  late final _filament_camera_get_model_matrix =
+      _filament_camera_get_model_matrixPtr
+          .asFunction<Matrix4x4 Function(CameraRef)>();
 
   Vector3 filament_camera_get_position(
     CameraRef camera,
@@ -4932,9 +4969,15 @@ class Vector4 extends ffi.Struct {
   external double w;
 }
 
-class Matrix3x3 extends ffi.Opaque {}
+class Matrix3x3 extends ffi.Struct {
+  @ffi.Array.multi([3])
+  external ffi.Array<Vector3> rows;
+}
 
-class Matrix4x4 extends ffi.Opaque {}
+class Matrix4x4 extends ffi.Struct {
+  @ffi.Array.multi([4])
+  external ffi.Array<Vector4> rows;
+}
 
 /// Common types
 class filament_viewport_t extends ffi.Struct {

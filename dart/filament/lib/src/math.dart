@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'package:filament/src/native.dart' as native;
 
 class Vector2 {
@@ -50,4 +51,17 @@ extension Vector3NativeExtensions on native.Vector3 {
 extension Vector4NativeExtensions on native.Vector4 {
   Vector4 toDart() => Vector4(this.x, this.y, this.z, this.w);
   Color toDartColor() => Color.rgba(this.x, this.y, this.z, this.w);
+}
+
+extension PopulateNativeMatrices on List<double> {
+  void populateNativeMatrix4x4(native.Matrix4x4 nativeMatrix) {
+    assert(this.length >= 16);
+    for (int x = 0; x < 4; x++) {
+      var row = nativeMatrix.rows[x];
+      row.x = this[0 + (x * 4)];
+      row.y = this[1 + (x * 4)];
+      row.z = this[2 + (x * 4)];
+      row.w = this[3 + (x * 4)];
+    }
+  }
 }

@@ -24,8 +24,7 @@ extension Vector3Conversion on filament_native.Vector3 {
 }
 
 extension Vector4Conversion on filament_native.Vector4 {
-  List<double> toList() =>
-      List.unmodifiable([this.x, this.y, this.z, this.w]);
+  List<double> toList() => List.unmodifiable([this.x, this.y, this.z, this.w]);
 }
 
 class FilamentAllocator implements Allocator {
@@ -93,4 +92,40 @@ extension BoolNativeConversion on bool {
 
 extension IntNativeConversion on int {
   bool get asBool => (this != 0);
+}
+
+class NativeStructPool {
+  static final Map<Type, List> _sPool = {};
+
+  static Pointer<T> borrow<T extends Struct>(int sizeOfT) {
+    var pool = _sPool[T.runtimeType];
+
+    Pointer<T> result = nullptr;
+    if (pool == null || pool.isEmpty) {
+      result = FilamentAllocator.global.allocate(sizeOfT);
+    } else {
+      result = pool.last as Pointer<T>;
+      pool.removeLast();
+    }
+    return result;
+  }
+
+  static void returnBorrow<T extends Struct>(Pointer<T> value) {
+    var pool = _sPool[T.runtimeType];
+    if (pool == null) {
+      _sPool[T.runtimeType] = [value];
+    } else {
+      pool.add(value);
+    }
+  }
+
+  static void clearAll() {
+    for (var pool in _sPool.values) {
+      // Return each object to the allocator
+      for (var item in pool) {
+        FilamentAllocator.global.free(item);
+      }
+    }
+    _sPool.clear();
+  }
 }
