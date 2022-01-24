@@ -50,8 +50,8 @@ class RenderTarget implements Disposable {
 
   static RenderTarget create(Engine engine, Map<AttachmentPoint, AttachmentConfig> attachmentConfig) {
 
-    Pointer<native.filament_render_target_attachment_config_t> configArrayPtr =
-      native.FilamentAllocator.global.allocateArray(sizeOf<native.filament_render_target_attachment_config_t>(), attachmentConfig.length);
+    var configArrayPtr =
+      native.nativeAlloc<native.filament_render_target_attachment_config_t>(attachmentConfig.length);
     try {
 
       // Fill the native config array
@@ -78,7 +78,7 @@ class RenderTarget implements Disposable {
       
       return RenderTarget._(renderTargetHandle, attachmentConfig);
     } finally {
-      native.FilamentAllocator.global.free(configArrayPtr);
+      native.nativeFree(configArrayPtr);
     }
   }
 

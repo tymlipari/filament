@@ -105,12 +105,12 @@ class LightManager {
   }
 
   Vector3 getPosition(int entityInstance) {
-    var nativeResult = native.FilamentAllocator.global.call<native.Vector3>();
+    var nativeResult = native.nativeAlloc<native.Vector3>();
     try {
       native.instance.filament_light_manager_get_position(_mNativeHandle, entityInstance, nativeResult);
       return nativeResult.ref.toDart();
     } finally {
-      native.FilamentAllocator.global.free(nativeResult);
+      native.nativeFree(nativeResult);
     }
   }
 
@@ -119,12 +119,12 @@ class LightManager {
   }
 
   Vector3 getDirection(int entityInstance) {
-    var nativeResult = native.FilamentAllocator.global.call<native.Vector3>();
+    var nativeResult = native.nativeAlloc<native.Vector3>();
     try {
       native.instance.filament_light_manager_get_direction(_mNativeHandle, entityInstance, nativeResult);
       return nativeResult.ref.toDart();
     } finally {
-      native.FilamentAllocator.global.free(nativeResult);
+      native.nativeFree(nativeResult);
     }
   }
 
@@ -133,12 +133,12 @@ class LightManager {
   }
 
   Vector3 getColor(int entityInstance) {
-    var nativeResult = native.FilamentAllocator.global.call<native.Vector3>();
+    var nativeResult = native.nativeAlloc<native.Vector3>();
     try {
       native.instance.filament_light_manager_get_color(_mNativeHandle, nativeResult);
       return nativeResult.ref.toDart();
     } finally {
-      native.FilamentAllocator.global.free(nativeResult);
+      native.nativeFree(nativeResult);
     }
   }
 
