@@ -1,4 +1,5 @@
 import 'package:filament/src/disposable.dart';
+import 'package:filament/src/entity.dart';
 import 'package:filament/src/native.dart' as native;
 
 class EntityManager implements Disposable {
@@ -27,14 +28,14 @@ class EntityManager implements Disposable {
   /// Methods
   ///
 
-  int createEntity() =>
-      native.instance.filament_entity_manager_create_entity(_mNativeHandle);
+  Entity createEntity() =>
+      createEntityFromId(this, native.instance.filament_entity_manager_create_entity(_mNativeHandle));
 
-  void destroyEntity(int entityId) =>
-      native.instance.filament_entity_manager_destroy_entity(entityId);
+  void destroyEntity(Entity entity) =>
+      native.instance.filament_entity_manager_destroy_entity(entity.id);
 
-  bool isEntityAlive(int entityId) =>
-      native.instance.filament_entity_manager_entity_is_alive(entityId) != 0;
+  bool isEntityAlive(Entity entity) =>
+      native.instance.filament_entity_manager_entity_is_alive(entity.id) != 0;
 }
 
 EntityManager createEntityManagerFromNative(native.EntityManagerRef handle) =>
