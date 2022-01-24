@@ -66,7 +66,7 @@ class MaterialInstance {
 
   String get name {
     _mName ??=
-        native.instance.filament_material_instance_get_name(_mNativeHandle);
+        native.instance.filament_material_instance_get_name(_mNativeHandle).value;
     return _mName!;
   }
 
@@ -164,7 +164,7 @@ class MaterialInstance {
           _mNativeHandle, name, type.index, nArray!, 0, count);
     } finally {
       if (nArray != null) {
-        native.FilamentAllocator.global.free(nArray);
+        native._FilamentAllocator.freeMem(nArray);
       }
     }
   }
@@ -181,7 +181,7 @@ class MaterialInstance {
           _mNativeHandle, name, type.index, nArray!, 0, count);
     } finally {
       if (nArray != null) {
-        native.FilamentAllocator.global.free(nArray);
+        native._FilamentAllocator.freeMem(nArray);
       }
     }
   }
@@ -198,7 +198,7 @@ class MaterialInstance {
           _mNativeHandle, name, type.index, nArray!, 0, count);
     } finally {
       if (nArray != null) {
-        native.FilamentAllocator.global.free(nArray);
+        native._FilamentAllocator.freeMem(nArray);
       }
     }
   }
