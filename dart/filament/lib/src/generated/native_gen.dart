@@ -1155,20 +1155,339 @@ class NativeLibrary {
   late final _filament_fence_wait =
       _filament_fence_waitPtr.asFunction<int Function(FenceRef, int, int)>();
 
-  ColorGradingRef filament_engine_create_color_grading(
+  BufferObjectBuilderRef filament_create_buffer_builder() {
+    return _filament_create_buffer_builder();
+  }
+
+  late final _filament_create_buffer_builderPtr =
+      _lookup<ffi.NativeFunction<BufferObjectBuilderRef Function()>>(
+          'filament_create_buffer_builder');
+  late final _filament_create_buffer_builder =
+      _filament_create_buffer_builderPtr
+          .asFunction<BufferObjectBuilderRef Function()>();
+
+  BufferObjectRef filament_engine_create_buffer_object(
+    EngineRef engine,
+    int byteCount,
+    int bindingType,
+  ) {
+    return _filament_engine_create_buffer_object(
+      engine,
+      byteCount,
+      bindingType,
+    );
+  }
+
+  late final _filament_engine_create_buffer_objectPtr = _lookup<
+      ffi.NativeFunction<
+          BufferObjectRef Function(EngineRef, ffi.Int32,
+              ffi.Int32)>>('filament_engine_create_buffer_object');
+  late final _filament_engine_create_buffer_object =
+      _filament_engine_create_buffer_objectPtr
+          .asFunction<BufferObjectRef Function(EngineRef, int, int)>();
+
+  /// ColorGrading
+  ColorGradingBuilderRef filament_create_ColorGradingBuilder() {
+    return _filament_create_ColorGradingBuilder();
+  }
+
+  late final _filament_create_ColorGradingBuilderPtr =
+      _lookup<ffi.NativeFunction<ColorGradingBuilderRef Function()>>(
+          'filament_create_ColorGradingBuilder');
+  late final _filament_create_ColorGradingBuilder =
+      _filament_create_ColorGradingBuilderPtr
+          .asFunction<ColorGradingBuilderRef Function()>();
+
+  void filament_ColorGradingBuilder_set_quality(
+    ColorGradingBuilderRef builder,
+    int qualityLevel,
+  ) {
+    return _filament_ColorGradingBuilder_set_quality(
+      builder,
+      qualityLevel,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_qualityPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ffi.Int32)>>('filament_ColorGradingBuilder_set_quality');
+  late final _filament_ColorGradingBuilder_set_quality =
+      _filament_ColorGradingBuilder_set_qualityPtr
+          .asFunction<void Function(ColorGradingBuilderRef, int)>();
+
+  void filament_ColorGradingBuilder_set_toneMapper(
+    ColorGradingBuilderRef builder,
+    ToneMapperRef toneMapper,
+  ) {
+    return _filament_ColorGradingBuilder_set_toneMapper(
+      builder,
+      toneMapper,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_toneMapperPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ToneMapperRef)>>('filament_ColorGradingBuilder_set_toneMapper');
+  late final _filament_ColorGradingBuilder_set_toneMapper =
+      _filament_ColorGradingBuilder_set_toneMapperPtr
+          .asFunction<void Function(ColorGradingBuilderRef, ToneMapperRef)>();
+
+  void filament_ColorGradingBuilder_set_luminanceScaling(
+    ColorGradingBuilderRef builder,
+    int luminanceScaling,
+  ) {
+    return _filament_ColorGradingBuilder_set_luminanceScaling(
+      builder,
+      luminanceScaling,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_luminanceScalingPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ColorGradingBuilderRef, bool)>>(
+      'filament_ColorGradingBuilder_set_luminanceScaling');
+  late final _filament_ColorGradingBuilder_set_luminanceScaling =
+      _filament_ColorGradingBuilder_set_luminanceScalingPtr
+          .asFunction<void Function(ColorGradingBuilderRef, int)>();
+
+  void filament_ColorGradingBuilder_set_gamutMapping(
+    ColorGradingBuilderRef buidler,
+    int gamutMapping,
+  ) {
+    return _filament_ColorGradingBuilder_set_gamutMapping(
+      buidler,
+      gamutMapping,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_gamutMappingPtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ColorGradingBuilderRef, bool)>>(
+      'filament_ColorGradingBuilder_set_gamutMapping');
+  late final _filament_ColorGradingBuilder_set_gamutMapping =
+      _filament_ColorGradingBuilder_set_gamutMappingPtr
+          .asFunction<void Function(ColorGradingBuilderRef, int)>();
+
+  void filament_ColorGradingBuilder_set_nightAdaptation(
+    ColorGradingBuilderRef builder,
+    double adaptation,
+  ) {
+    return _filament_ColorGradingBuilder_set_nightAdaptation(
+      builder,
+      adaptation,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_nightAdaptationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ffi.Float)>>('filament_ColorGradingBuilder_set_nightAdaptation');
+  late final _filament_ColorGradingBuilder_set_nightAdaptation =
+      _filament_ColorGradingBuilder_set_nightAdaptationPtr
+          .asFunction<void Function(ColorGradingBuilderRef, double)>();
+
+  void filament_ColorGradingBuilder_set_exposure(
+    ColorGradingBuilderRef builder,
+    double exposure,
+  ) {
+    return _filament_ColorGradingBuilder_set_exposure(
+      builder,
+      exposure,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_exposurePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ffi.Float)>>('filament_ColorGradingBuilder_set_exposure');
+  late final _filament_ColorGradingBuilder_set_exposure =
+      _filament_ColorGradingBuilder_set_exposurePtr
+          .asFunction<void Function(ColorGradingBuilderRef, double)>();
+
+  void filament_ColorGradingBuilder_set_whiteBalance(
+    ColorGradingBuilderRef builder,
+    double temperature,
+    double tint,
+  ) {
+    return _filament_ColorGradingBuilder_set_whiteBalance(
+      builder,
+      temperature,
+      tint,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_whiteBalancePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef, ffi.Float,
+              ffi.Float)>>('filament_ColorGradingBuilder_set_whiteBalance');
+  late final _filament_ColorGradingBuilder_set_whiteBalance =
+      _filament_ColorGradingBuilder_set_whiteBalancePtr
+          .asFunction<void Function(ColorGradingBuilderRef, double, double)>();
+
+  void filament_ColorGradingBuilder_set_channelMixer(
+    ColorGradingBuilderRef builder,
+    Vector3 outRed,
+    Vector3 outGreen,
+    Vector3 outBlue,
+  ) {
+    return _filament_ColorGradingBuilder_set_channelMixer(
+      builder,
+      outRed,
+      outGreen,
+      outBlue,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_channelMixerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef, Vector3, Vector3,
+              Vector3)>>('filament_ColorGradingBuilder_set_channelMixer');
+  late final _filament_ColorGradingBuilder_set_channelMixer =
+      _filament_ColorGradingBuilder_set_channelMixerPtr.asFunction<
+          void Function(ColorGradingBuilderRef, Vector3, Vector3, Vector3)>();
+
+  void filament_ColorGradingBuilder_set_shadowsMidtonesHighlights(
+    ColorGradingBuilderRef builder,
+    Vector4 shadows,
+    Vector4 midtones,
+    Vector4 highlights,
+    Vector4 ranges,
+  ) {
+    return _filament_ColorGradingBuilder_set_shadowsMidtonesHighlights(
+      builder,
+      shadows,
+      midtones,
+      highlights,
+      ranges,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_shadowsMidtonesHighlightsPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(ColorGradingBuilderRef, Vector4, Vector4,
+                      Vector4, Vector4)>>(
+          'filament_ColorGradingBuilder_set_shadowsMidtonesHighlights');
+  late final _filament_ColorGradingBuilder_set_shadowsMidtonesHighlights =
+      _filament_ColorGradingBuilder_set_shadowsMidtonesHighlightsPtr.asFunction<
+          void Function(
+              ColorGradingBuilderRef, Vector4, Vector4, Vector4, Vector4)>();
+
+  void filament_ColorGradingBuilder_set_slopeOffsetPower(
+    ColorGradingBuilderRef builder,
+    Vector3 slope,
+    Vector3 offset,
+    Vector3 power,
+  ) {
+    return _filament_ColorGradingBuilder_set_slopeOffsetPower(
+      builder,
+      slope,
+      offset,
+      power,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_slopeOffsetPowerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef, Vector3, Vector3,
+              Vector3)>>('filament_ColorGradingBuilder_set_slopeOffsetPower');
+  late final _filament_ColorGradingBuilder_set_slopeOffsetPower =
+      _filament_ColorGradingBuilder_set_slopeOffsetPowerPtr.asFunction<
+          void Function(ColorGradingBuilderRef, Vector3, Vector3, Vector3)>();
+
+  void filament_ColorGradingBuilder_set_contrast(
+    ColorGradingBuilderRef builder,
+    double contrast,
+  ) {
+    return _filament_ColorGradingBuilder_set_contrast(
+      builder,
+      contrast,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_contrastPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ffi.Float)>>('filament_ColorGradingBuilder_set_contrast');
+  late final _filament_ColorGradingBuilder_set_contrast =
+      _filament_ColorGradingBuilder_set_contrastPtr
+          .asFunction<void Function(ColorGradingBuilderRef, double)>();
+
+  void filament_ColorGradingBuilder_set_vibrance(
+    ColorGradingBuilderRef builder,
+    double vibrance,
+  ) {
+    return _filament_ColorGradingBuilder_set_vibrance(
+      builder,
+      vibrance,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_vibrancePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ffi.Float)>>('filament_ColorGradingBuilder_set_vibrance');
+  late final _filament_ColorGradingBuilder_set_vibrance =
+      _filament_ColorGradingBuilder_set_vibrancePtr
+          .asFunction<void Function(ColorGradingBuilderRef, double)>();
+
+  void filament_ColorGradingBuilder_set_saturation(
+    ColorGradingBuilderRef builder,
+    double saturation,
+  ) {
+    return _filament_ColorGradingBuilder_set_saturation(
+      builder,
+      saturation,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_saturationPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef,
+              ffi.Float)>>('filament_ColorGradingBuilder_set_saturation');
+  late final _filament_ColorGradingBuilder_set_saturation =
+      _filament_ColorGradingBuilder_set_saturationPtr
+          .asFunction<void Function(ColorGradingBuilderRef, double)>();
+
+  void filament_ColorGradingBuilder_set_curves(
+    ColorGradingBuilderRef builder,
+    Vector3 shadowGamma,
+    Vector3 midPoint,
+    Vector3 highlightScale,
+  ) {
+    return _filament_ColorGradingBuilder_set_curves(
+      builder,
+      shadowGamma,
+      midPoint,
+      highlightScale,
+    );
+  }
+
+  late final _filament_ColorGradingBuilder_set_curvesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ColorGradingBuilderRef, Vector3, Vector3,
+              Vector3)>>('filament_ColorGradingBuilder_set_curves');
+  late final _filament_ColorGradingBuilder_set_curves =
+      _filament_ColorGradingBuilder_set_curvesPtr.asFunction<
+          void Function(ColorGradingBuilderRef, Vector3, Vector3, Vector3)>();
+
+  ColorGradingRef filament_ColorGradingBuilder_build(
+    ColorGradingBuilderRef builder,
     EngineRef engine,
   ) {
-    return _filament_engine_create_color_grading(
+    return _filament_ColorGradingBuilder_build(
+      builder,
       engine,
     );
   }
 
-  late final _filament_engine_create_color_gradingPtr =
-      _lookup<ffi.NativeFunction<ColorGradingRef Function(EngineRef)>>(
-          'filament_engine_create_color_grading');
-  late final _filament_engine_create_color_grading =
-      _filament_engine_create_color_gradingPtr
-          .asFunction<ColorGradingRef Function(EngineRef)>();
+  late final _filament_ColorGradingBuilder_buildPtr = _lookup<
+      ffi.NativeFunction<
+          ColorGradingRef Function(ColorGradingBuilderRef,
+              EngineRef)>>('filament_ColorGradingBuilder_build');
+  late final _filament_ColorGradingBuilder_build =
+      _filament_ColorGradingBuilder_buildPtr.asFunction<
+          ColorGradingRef Function(ColorGradingBuilderRef, EngineRef)>();
 
   void filament_destroy_color_grading(
     ColorGradingRef colorGrading,
@@ -4768,6 +5087,221 @@ class NativeLibrary {
           void Function(ViewRef, double, double, int, int, int, int, int, int,
               int, int)>();
 
+  /// ToneMapper
+  ToneMapperRef filament_create_LinearToneMapper() {
+    return _filament_create_LinearToneMapper();
+  }
+
+  late final _filament_create_LinearToneMapperPtr =
+      _lookup<ffi.NativeFunction<ToneMapperRef Function()>>(
+          'filament_create_LinearToneMapper');
+  late final _filament_create_LinearToneMapper =
+      _filament_create_LinearToneMapperPtr
+          .asFunction<ToneMapperRef Function()>();
+
+  ToneMapperRef filament_create_ACESToneMapper() {
+    return _filament_create_ACESToneMapper();
+  }
+
+  late final _filament_create_ACESToneMapperPtr =
+      _lookup<ffi.NativeFunction<ToneMapperRef Function()>>(
+          'filament_create_ACESToneMapper');
+  late final _filament_create_ACESToneMapper =
+      _filament_create_ACESToneMapperPtr.asFunction<ToneMapperRef Function()>();
+
+  ToneMapperRef filament_create_ACESLegacyToneMapper() {
+    return _filament_create_ACESLegacyToneMapper();
+  }
+
+  late final _filament_create_ACESLegacyToneMapperPtr =
+      _lookup<ffi.NativeFunction<ToneMapperRef Function()>>(
+          'filament_create_ACESLegacyToneMapper');
+  late final _filament_create_ACESLegacyToneMapper =
+      _filament_create_ACESLegacyToneMapperPtr
+          .asFunction<ToneMapperRef Function()>();
+
+  ToneMapperRef filament_create_FilmicToneMapper() {
+    return _filament_create_FilmicToneMapper();
+  }
+
+  late final _filament_create_FilmicToneMapperPtr =
+      _lookup<ffi.NativeFunction<ToneMapperRef Function()>>(
+          'filament_create_FilmicToneMapper');
+  late final _filament_create_FilmicToneMapper =
+      _filament_create_FilmicToneMapperPtr
+          .asFunction<ToneMapperRef Function()>();
+
+  ToneMapperRef filament_create_GenericToneMapper() {
+    return _filament_create_GenericToneMapper();
+  }
+
+  late final _filament_create_GenericToneMapperPtr =
+      _lookup<ffi.NativeFunction<ToneMapperRef Function()>>(
+          'filament_create_GenericToneMapper');
+  late final _filament_create_GenericToneMapper =
+      _filament_create_GenericToneMapperPtr
+          .asFunction<ToneMapperRef Function()>();
+
+  double filament_GenericToneMapper_get_contrast(
+    ToneMapperRef toneMapper,
+  ) {
+    return _filament_GenericToneMapper_get_contrast(
+      toneMapper,
+    );
+  }
+
+  late final _filament_GenericToneMapper_get_contrastPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(ToneMapperRef)>>(
+          'filament_GenericToneMapper_get_contrast');
+  late final _filament_GenericToneMapper_get_contrast =
+      _filament_GenericToneMapper_get_contrastPtr
+          .asFunction<double Function(ToneMapperRef)>();
+
+  void filament_GenericToneMapper_set_contrast(
+    ToneMapperRef toneMapper,
+    double contrast,
+  ) {
+    return _filament_GenericToneMapper_set_contrast(
+      toneMapper,
+      contrast,
+    );
+  }
+
+  late final _filament_GenericToneMapper_set_contrastPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ToneMapperRef, ffi.Float)>>(
+          'filament_GenericToneMapper_set_contrast');
+  late final _filament_GenericToneMapper_set_contrast =
+      _filament_GenericToneMapper_set_contrastPtr
+          .asFunction<void Function(ToneMapperRef, double)>();
+
+  double filament_GenericToneMapper_get_shoulder(
+    ToneMapperRef toneMapper,
+  ) {
+    return _filament_GenericToneMapper_get_shoulder(
+      toneMapper,
+    );
+  }
+
+  late final _filament_GenericToneMapper_get_shoulderPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(ToneMapperRef)>>(
+          'filament_GenericToneMapper_get_shoulder');
+  late final _filament_GenericToneMapper_get_shoulder =
+      _filament_GenericToneMapper_get_shoulderPtr
+          .asFunction<double Function(ToneMapperRef)>();
+
+  void filament_GenericToneMapper_set_shoulder(
+    ToneMapperRef toneMapper,
+    double shoulder,
+  ) {
+    return _filament_GenericToneMapper_set_shoulder(
+      toneMapper,
+      shoulder,
+    );
+  }
+
+  late final _filament_GenericToneMapper_set_shoulderPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ToneMapperRef, ffi.Float)>>(
+          'filament_GenericToneMapper_set_shoulder');
+  late final _filament_GenericToneMapper_set_shoulder =
+      _filament_GenericToneMapper_set_shoulderPtr
+          .asFunction<void Function(ToneMapperRef, double)>();
+
+  double filament_GenericToneMapper_get_midGrayIn(
+    ToneMapperRef toneMapper,
+  ) {
+    return _filament_GenericToneMapper_get_midGrayIn(
+      toneMapper,
+    );
+  }
+
+  late final _filament_GenericToneMapper_get_midGrayInPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(ToneMapperRef)>>(
+          'filament_GenericToneMapper_get_midGrayIn');
+  late final _filament_GenericToneMapper_get_midGrayIn =
+      _filament_GenericToneMapper_get_midGrayInPtr
+          .asFunction<double Function(ToneMapperRef)>();
+
+  void filament_GenericToneMapper_set_midGrayIn(
+    ToneMapperRef toneMapper,
+    double midGrayIn,
+  ) {
+    return _filament_GenericToneMapper_set_midGrayIn(
+      toneMapper,
+      midGrayIn,
+    );
+  }
+
+  late final _filament_GenericToneMapper_set_midGrayInPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ToneMapperRef, ffi.Float)>>(
+          'filament_GenericToneMapper_set_midGrayIn');
+  late final _filament_GenericToneMapper_set_midGrayIn =
+      _filament_GenericToneMapper_set_midGrayInPtr
+          .asFunction<void Function(ToneMapperRef, double)>();
+
+  double filament_GenericToneMapper_get_midGrayOut(
+    ToneMapperRef toneMapper,
+  ) {
+    return _filament_GenericToneMapper_get_midGrayOut(
+      toneMapper,
+    );
+  }
+
+  late final _filament_GenericToneMapper_get_midGrayOutPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(ToneMapperRef)>>(
+          'filament_GenericToneMapper_get_midGrayOut');
+  late final _filament_GenericToneMapper_get_midGrayOut =
+      _filament_GenericToneMapper_get_midGrayOutPtr
+          .asFunction<double Function(ToneMapperRef)>();
+
+  void filament_GenericToneMapper_set_midGrayOut(
+    ToneMapperRef toneMapper,
+    double midGrayOut,
+  ) {
+    return _filament_GenericToneMapper_set_midGrayOut(
+      toneMapper,
+      midGrayOut,
+    );
+  }
+
+  late final _filament_GenericToneMapper_set_midGrayOutPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ToneMapperRef, ffi.Float)>>(
+          'filament_GenericToneMapper_set_midGrayOut');
+  late final _filament_GenericToneMapper_set_midGrayOut =
+      _filament_GenericToneMapper_set_midGrayOutPtr
+          .asFunction<void Function(ToneMapperRef, double)>();
+
+  double filament_GenericToneMapper_get_hdrMax(
+    ToneMapperRef toneMapper,
+  ) {
+    return _filament_GenericToneMapper_get_hdrMax(
+      toneMapper,
+    );
+  }
+
+  late final _filament_GenericToneMapper_get_hdrMaxPtr =
+      _lookup<ffi.NativeFunction<ffi.Float Function(ToneMapperRef)>>(
+          'filament_GenericToneMapper_get_hdrMax');
+  late final _filament_GenericToneMapper_get_hdrMax =
+      _filament_GenericToneMapper_get_hdrMaxPtr
+          .asFunction<double Function(ToneMapperRef)>();
+
+  void filament_GenericToneMapper_set_hdrMax(
+    ToneMapperRef toneMapper,
+    double hdrMax,
+  ) {
+    return _filament_GenericToneMapper_set_hdrMax(
+      toneMapper,
+      hdrMax,
+    );
+  }
+
+  late final _filament_GenericToneMapper_set_hdrMaxPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ToneMapperRef, ffi.Float)>>(
+          'filament_GenericToneMapper_set_hdrMax');
+  late final _filament_GenericToneMapper_set_hdrMax =
+      _filament_GenericToneMapper_set_hdrMaxPtr
+          .asFunction<void Function(ToneMapperRef, double)>();
+
   /// BufferObject
   BufferObjectBuilderRef filament_create_BufferObjectBuilder() {
     return _filament_create_BufferObjectBuilder();
@@ -4903,6 +5437,8 @@ class BufferObject extends ffi.Opaque {}
 
 class Camera extends ffi.Opaque {}
 
+class ColorGradingBuilder extends ffi.Opaque {}
+
 class ColorGrading extends ffi.Opaque {}
 
 class Engine extends ffi.Opaque {}
@@ -4938,6 +5474,8 @@ class SwapChain extends ffi.Opaque {}
 class Texture extends ffi.Opaque {}
 
 class TextureSampler extends ffi.Opaque {}
+
+class ToneMapper extends ffi.Opaque {}
 
 class TransformManager extends ffi.Opaque {}
 
@@ -5042,6 +5580,10 @@ typedef SceneRef = ffi.Pointer<Scene>;
 typedef SkyboxRef = ffi.Pointer<Skybox>;
 typedef IndirectLightRef = ffi.Pointer<IndirectLight>;
 typedef FenceRef = ffi.Pointer<Fence>;
+typedef BufferObjectBuilderRef = ffi.Pointer<BufferObjectBuilder>;
+typedef BufferObjectRef = ffi.Pointer<BufferObject>;
+typedef ColorGradingBuilderRef = ffi.Pointer<ColorGradingBuilder>;
+typedef ToneMapperRef = ffi.Pointer<ToneMapper>;
 typedef ColorGradingRef = ffi.Pointer<ColorGrading>;
 typedef IndexBufferRef = ffi.Pointer<IndexBuffer>;
 typedef TextureRef = ffi.Pointer<Texture>;
@@ -5071,5 +5613,3 @@ class filament_render_target_attachment_config_t extends ffi.Struct {
 
 typedef RenderTargetRef = ffi.Pointer<RenderTarget>;
 typedef TransformManagerRef = ffi.Pointer<TransformManager>;
-typedef BufferObjectBuilderRef = ffi.Pointer<BufferObjectBuilder>;
-typedef BufferObjectRef = ffi.Pointer<BufferObject>;

@@ -222,9 +222,7 @@ class Material implements Disposable {
   List<ShaderParameter> get parameters {
     final int count = parameterCount;
     if (count > 0) {
-      Pointer<native.ParameterRef> parameterList = native
-          .FilamentAllocator.global
-          .allocate(sizeOf<native.ParameterRef>() * count);
+      var parameterList = native.nativeAlloc<native.ParameterRef>();
 
       try {
         var returnedCount = native.instance.filament_material_get_parameters(
@@ -236,7 +234,7 @@ class Material implements Disposable {
         }
         return List.unmodifiable(results);
       } finally {
-        native.FilamentAllocator.global.free(parameterList);
+        native._FilamentAllocator.freeMem(parameterList);
       }
     }
     return List.empty();
