@@ -6,27 +6,19 @@ import 'generated/native_gen.dart' as filament_native;
 // Re-export generated types since consumers will only import 'native.dart'
 export 'generated/native_gen.dart';
 
-late final DynamicLibrary _filamentLib = Platform.isWindows
-    ? DynamicLibrary.open('filament-dart.dll')
-    : Platform.isMacOS
-        ? DynamicLibrary.open('filament-dart.dylib')
-        : (Platform.isAndroid || Platform.isLinux)
-            ? DynamicLibrary.open('filament-dart.so')
-            : DynamicLibrary.executable();
-
-late final filament_native.NativeLibrary instance =
-    filament_native.NativeLibrary(_filamentLib);
-
-/// Native type extensions
-
-extension Vector3Conversion on filament_native.Vector3 {
-  List<double> toList() => List.unmodifiable([this.x, this.y, this.z]);
+DynamicLibrary _openLibrary(String baseName) {
+  if (Platform.isLinux || Platform.isAndroid) {
+    return DynamicLibrary.open('lib$baseName.so');
+  } else if (Platform.isMacOS) {
+    return DynamicLibrary.open('lib$baseName.dylib');
+  } else if (Platform.isWindows) {
+    return DynamicLibrary.open('$baseName.dll');
+  }
+  return DynamicLibrary.executable();
 }
 
-extension Vector4Conversion on filament_native.Vector4 {
-  List<double> toList() =>
-      List.unmodifiable([this.x, this.y, this.z, this.w]);
-}
+late final filament_native.NativeLibrary instance = 
+  filament_native.NativeLibrary(_openLibrary('filament-dart')); 
 
 class _FilamentAllocator implements Allocator {
   static final _FilamentAllocator global = _FilamentAllocator();
